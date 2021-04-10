@@ -1,7 +1,7 @@
-import { ProductCard } from "../../components/Product";
+import ProductDetailCard from "../../components/ProductDetailCard";
 
 function Sticker({}) {
-  return <ProductCard />;
+  return <ProductDetailCard />;
 }
 
 export default Sticker;
