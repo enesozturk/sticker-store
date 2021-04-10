@@ -8,7 +8,7 @@ import Input from "../components/Input";
 function Checkout({}) {
   const [section, setSection] = useState(0);
 
-  const handleActivateSection = (sectionIndex) => {
+  const handleActivateSection = (sectionIndex: number) => {
     setSection(sectionIndex);
   };
 

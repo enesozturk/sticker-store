@@ -3,7 +3,7 @@ type CheckoutSectionProps = {
   title: string;
   isOpen?: boolean;
   content?: React.ReactNode;
-  onPress?: (arg: string) => void;
+  onPress?: (arg: number) => void;
 };
 
 const CheckoutSection = ({
@@ -18,8 +18,7 @@ const CheckoutSection = ({
   return (
     <button
       className="bg-white rounded-2xl flex flex-row px-6 py-4 w-full border border-gray-1 mb-2 focus:outline-none"
-      onClick={(e) => {
-        console.log("press");
+      onClick={() => {
         onPress(index);
       }}
     >
