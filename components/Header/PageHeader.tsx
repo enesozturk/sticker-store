@@ -1,10 +1,18 @@
-const SectionHeader = ({
+type PageHeaderProps = {
+  rightTitle: string;
+  rightSubtitle?: string;
+  leftTitle?: string;
+  rightDescription?: string;
+  leftDescription?: string;
+};
+
+const PageHeader = ({
   rightTitle,
   rightSubtitle,
   leftTitle,
   rightDescription,
   leftDescription,
-}) => {
+}: PageHeaderProps) => {
   const hasDescriptionText = rightDescription || leftDescription;
   return (
     <div className="flex flex-col justify-start w-full mb-4">
@@ -50,4 +58,4 @@ const SectionHeader = ({
   );
 };
 
-export default SectionHeader;
+export default PageHeader;
