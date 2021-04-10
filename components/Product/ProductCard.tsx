@@ -7,7 +7,7 @@ type ProductCardProps = {
 
 const ProductCard = ({ isFirst, isLast }: ProductCardProps) => {
   return (
-    <Link href="/sticker/1">
+    <Link href="/product/1">
       <a
         className={`flex flex-col rounded-2xl bg-white overflow-hidden shadow mb-4 w-full hover:bg-gray-100 hover:cursor-pointer ${
           isFirst
