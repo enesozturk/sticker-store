@@ -1,4 +1,18 @@
-const CheckoutSection = ({ step, title, isOpen = false, content, onPress }) => {
+type CheckoutSectionProps = {
+  step: string;
+  title: string;
+  isOpen?: boolean;
+  content?: React.ReactNode;
+  onPress?: (arg: string) => void;
+};
+
+const CheckoutSection = ({
+  step,
+  title,
+  isOpen = false,
+  content,
+  onPress,
+}: CheckoutSectionProps) => {
   const index = parseInt(step);
 
   return (
