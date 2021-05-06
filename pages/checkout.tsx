@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-import { Button } from "../components/Button";
-import { CheckoutSection } from "../components/Checkout";
-import { PageHeader } from "../components/Header";
-import Input from "../components/Input";
+import { Button } from "../src/components/Button";
+import { CheckoutSection } from "../src/components/Checkout";
+import { PageHeader } from "../src/components/Header";
+import Input from "../src/components/Input";
 
 function Checkout({}) {
   const [section, setSection] = useState(0);

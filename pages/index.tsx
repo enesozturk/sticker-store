@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-import { ProductCard } from "../components/Product";
+import { ProductCard } from "../src/components/Product";
 
 export default function Home({ ...props }) {
   const { products } = props;

@@ -1,6 +1,6 @@
-import { PageHeader } from "../components/Header";
-import { ProductCartItem } from "../components/Product";
-import { CheckoutSummary } from "../components/Checkout";
+import { PageHeader } from "../src/components/Header";
+import { ProductCartItem } from "../src/components/Product";
+import { CheckoutSummary } from "../src/components/Checkout";
 
 function Cart({}) {
   return (

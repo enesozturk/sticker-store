@@ -1,5 +1,5 @@
-import ProductDetailCard from "../../components/ProductDetailCard";
-import { getProduct, getProducts } from "../../utils/api";
+import ProductDetailCard from "../../src/components/ProductDetailCard";
+import { getProduct, getProducts } from "../../src/utils/api";
 
 function Sticker({ ...props }) {
   const { product } = props;
