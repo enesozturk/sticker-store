@@ -1,6 +1,9 @@
 import "../styles/globals.css";
 
+import App from "next/app";
+
 import { Header } from "../components/Header";
+import { getCategories, getProducts } from "../utils/api";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -12,5 +15,16 @@ function MyApp({ Component, pageProps }) {
     </>
   );
 }
+
+MyApp.getInitialProps = async (ctx) => {
+  const appProps = await App.getInitialProps(ctx);
+
+  const categories = await getCategories();
+  const products = await getProducts();
+  return {
+    ...appProps,
+    pageProps: { categories, products, path: ctx.pathname },
+  };
+};
 
 export default MyApp;

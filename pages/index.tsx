@@ -2,7 +2,9 @@ import Head from "next/head";
 
 import { ProductCard } from "../components/Product";
 
-export default function Home() {
+export default function Home({ ...props }) {
+  const { products } = props;
+
   return (
     <>
       <Head>
@@ -11,12 +13,9 @@ export default function Home() {
       </Head>
 
       <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-1 sm:gap-x-4 w-full">
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
+        {products?.map((item) => {
+          return <ProductCard item={item} />;
+        })}
       </div>
     </>
   );
