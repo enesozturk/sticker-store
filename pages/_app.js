@@ -1,9 +1,9 @@
-import "../styles/globals.css";
+import "../src/styles/globals.css";
 
 import App from "next/app";
 
-import { Header } from "../components/Header";
-import { getCategories, getProducts } from "../utils/api";
+import { Header } from "../src/components/Header";
+import { getCategories, getProducts } from "../src/utils/api";
 
 function MyApp({ Component, pageProps }) {
   return (
