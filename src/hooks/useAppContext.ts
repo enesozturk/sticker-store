@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { AppContext } from "../context/state";
+import { ShoppingCartContext } from "../context/shoppingCartContext";
 
 export const useAppContext = () => {
-  const context = useContext(AppContext);
+  const context = useContext(ShoppingCartContext);
 
   if (context === null) {
     throw new Error(

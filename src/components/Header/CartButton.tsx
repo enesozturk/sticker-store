@@ -12,7 +12,7 @@ const CartButton = () => {
     let totalPrice: number = 0;
 
     products.map((prd) => {
-      totalPrice += prd.price * prd.count;
+      totalPrice += prd.price * prd.quantity;
     });
     return totalPrice;
   };

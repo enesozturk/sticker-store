@@ -1,7 +1,7 @@
 import { ProductProps } from "./product";
 
 export type ShoppingCartProductProps = ProductProps & {
-  count: number;
+  quantity: number;
 };
 
 export type ShoppingCartProps = {

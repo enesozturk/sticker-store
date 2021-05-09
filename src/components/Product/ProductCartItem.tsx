@@ -33,15 +33,17 @@ const ProductCartItem = ({ item }: ProductCartItemProps) => {
       </div>
       <div className="flex flex-row xs:flex-col items-center xs:items-end justify-between xs:justify-center p-4">
         <div className="xs:mb-4 h-full">
-          {item.count > 1 && <IconButton icon={<TrashIcon small />} />}
+          {item.quantity > 1 && <IconButton icon={<TrashIcon small />} />}
         </div>
         <div className="flex items-center bg-gray-100 rounded-full ">
           <IconButton
             onClick={handleRemoveProductFromCart}
             round
-            icon={item.count === 1 ? <TrashIcon small /> : <MinusIcon small />}
+            icon={
+              item.quantity === 1 ? <TrashIcon small /> : <MinusIcon small />
+            }
           />
-          <span className="mx-4 text-md font-semibold">{item.count}</span>
+          <span className="mx-4 text-md font-semibold">{item.quantity}</span>
           <IconButton
             onClick={handleAddProductToCart}
             round

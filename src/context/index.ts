@@ -1,2 +1,2 @@
-export { AppContext } from "./state";
-export type { IAppContextProps } from "./state";
+export { ShoppingCartContext } from "./shoppingCartContext";
+export type { IShoppingCartContext } from "./shoppingCartContext";

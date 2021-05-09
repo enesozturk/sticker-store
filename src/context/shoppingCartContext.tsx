@@ -2,11 +2,12 @@ import { createContext } from "react";
 import { ProductProps } from "../types/product";
 import { ShoppingCartProps } from "../types/shoppingCart";
 
-export interface IAppContextProps {
+export interface IShoppingCartContext {
   shoppingCart: ShoppingCartProps;
-  setProducts: (products: ProductProps[]) => void;
   addProductToCart: (product: ProductProps) => void;
   removeProductFromCart: (product: ProductProps) => void;
 }
 
-export const AppContext = createContext<IAppContextProps | null>(null);
+export const ShoppingCartContext = createContext<IShoppingCartContext | null>(
+  null
+);

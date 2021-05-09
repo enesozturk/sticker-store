@@ -1,0 +1,1 @@
+export { shoppingCartReducer } from "./shoppingCartReducer";
