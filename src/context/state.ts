@@ -1,9 +1,9 @@
 import { createContext } from "react";
 import { ProductProps } from "../types/product";
-import { IShoppingCart } from "./shoppingCart";
+import { ShoppingCartProps } from "../types/shoppingCart";
 
 export interface IAppContextProps {
-  shoppingCart: IShoppingCart;
+  shoppingCart: ShoppingCartProps;
   setProducts: (products: ProductProps[]) => void;
   addProductToCart: (product: ProductProps) => void;
   removeProductToCart: (product: ProductProps) => void;
