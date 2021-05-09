@@ -1,6 +1,7 @@
 import Link from "next/link";
-import Image from "next/image";
+
 import { ProductProps } from "../../types/product";
+import Image from "../../components/Image";
 
 type ProductCardProps = {
   item: ProductProps;
@@ -10,9 +11,6 @@ type ProductCardProps = {
 
 const ProductCard = ({ item, isFirst, isLast }: ProductCardProps) => {
   const image = item.image[0]?.url;
-  const imageLoader = ({ src }) => {
-    return `http://localhost:1337${src}`;
-  };
 
   return (
     <Link href={`/product/${item.id}`}>
@@ -26,13 +24,7 @@ const ProductCard = ({ item, isFirst, isLast }: ProductCardProps) => {
         }`}
       >
         <div className="flex justify-center items-center">
-          <Image
-            loader={imageLoader}
-            src={image}
-            alt="product image"
-            width={200}
-            height={200}
-          />
+          <Image src={image} size={200} />
         </div>
         <div className="flex flex-col bg-gray-100 p-4">
           <span className="font-semibold">{item.title}</span>
