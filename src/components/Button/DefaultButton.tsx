@@ -1,6 +1,9 @@
-const Button = ({ text }) => {
+const Button = ({ text, ...props }) => {
   return (
-    <button className="flex flex-row items-center py-2 px-4 bg-blue-100 text-blue-400 rounded-xl font-medium focus:outline-none focus:ring focus:border-blue-100 h-12">
+    <button
+      {...props}
+      className="flex flex-row items-center py-2 px-4 bg-blue-100 text-blue-400 rounded-xl font-medium focus:outline-none focus:ring focus:border-blue-100 h-12"
+    >
       {text || "Button"}
     </button>
   );

@@ -3,7 +3,7 @@ import Link from "next/link";
 type IconButtonProps = {
   href?: string;
   icon?: React.ReactNode;
-  text?: string;
+  text?: string | number | null;
   onPress?: string;
   round?: boolean;
   small?: boolean;

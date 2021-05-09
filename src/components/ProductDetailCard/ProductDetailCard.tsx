@@ -1,11 +1,18 @@
 import Image from "next/image";
 import HeartIcon from "../Icon/HeartIcon";
 import { Button, IconButton, TypeButton } from "../Button";
+import { useAppContext } from "../../hooks/useAppContext";
 
 const ProductCard = ({ item }) => {
+  const { addProductToCart } = useAppContext();
+
   const image = item.image?.[0].url;
   const imageLoader = ({ src }) => {
     return `http://localhost:1337${src}`;
+  };
+
+  const handleAddProductToCart = () => {
+    addProductToCart(item);
   };
 
   return (
@@ -34,7 +41,7 @@ const ProductCard = ({ item }) => {
           <TypeButton text="Bold" isActive />
         </div>
         <div className="flex gap-2">
-          <Button text="Add to Cart" />
+          <Button onClick={handleAddProductToCart} text="Add to Cart" />
           <IconButton icon={<HeartIcon />} />
         </div>
       </div>
