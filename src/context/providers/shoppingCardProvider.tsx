@@ -1,6 +1,7 @@
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import {
   ADD_PRODUCT,
+  INITIALIZE_SHOPPING_CART,
   REMOVE_PRODUCT,
   shoppingCartReducer,
 } from "../reducers/shoppingCartReducer";
@@ -20,6 +21,14 @@ export const ShoppingCartProvider = ({ children }) => {
   const removeProductFromCart = (product) => {
     dispatch({ type: REMOVE_PRODUCT, product });
   };
+
+  const initializeShoppingCart = () => {
+    dispatch({ type: INITIALIZE_SHOPPING_CART });
+  };
+
+  useEffect(() => {
+    initializeShoppingCart();
+  }, []);
 
   return (
     <ShoppingCartContext.Provider

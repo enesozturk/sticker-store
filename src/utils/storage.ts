@@ -1,7 +1,12 @@
 import { SHOPPING_CART_LIST } from "../constants/storageKeys";
 import { ProductProps } from "../types/product";
+import { ShoppingCartProps } from "../types/shoppingCart";
 
-type StorageData = ProductProps | ProductProps[] | null;
+type StorageData =
+  | { shoppingCart: ShoppingCartProps }
+  | ProductProps
+  | ProductProps[]
+  | null;
 
 export function writeStorage(key: string, data: StorageData) {
   try {

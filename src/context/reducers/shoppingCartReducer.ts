@@ -1,5 +1,9 @@
+import { SHOPPING_CART_LIST } from "../../constants/storageKeys";
+import { readStorage, writeStorage } from "../../utils/storage";
+
 export const ADD_PRODUCT = "ADD_PRODUCT";
 export const REMOVE_PRODUCT = "REMOVE_PRODUCT";
+export const INITIALIZE_SHOPPING_CART = "INITIALIZE_SHOPPING_CART";
 
 const addProductToCart = (product, state) => {
   let products = [...state.shoppingCart.products];
@@ -12,6 +16,7 @@ const addProductToCart = (product, state) => {
     products[productIndex] = updatedProduct;
   }
 
+  writeStorage(SHOPPING_CART_LIST, { shoppingCart: { products } });
   return { ...state, shoppingCart: { products } };
 };
 
@@ -28,11 +33,16 @@ const removeProductFromCart = (product, state) => {
   } else {
     products[productIndex] = updatedItem;
   }
+
+  writeStorage(SHOPPING_CART_LIST, { shoppingCart: { products } });
   return { ...state, shoppingCart: { products } };
 };
 
 export const shoppingCartReducer = (state, action) => {
   switch (action.type) {
+    case INITIALIZE_SHOPPING_CART:
+      const shoppingCartFromStorage = readStorage("shoppingCart");
+      return shoppingCartFromStorage;
     case ADD_PRODUCT:
       return addProductToCart(action.product, state);
     case REMOVE_PRODUCT:
