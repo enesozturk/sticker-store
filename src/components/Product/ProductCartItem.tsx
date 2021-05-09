@@ -1,3 +1,4 @@
+import { useAppContext } from "../../hooks/useAppContext";
 import { ShoppingCartProductProps } from "../../types/shoppingCart";
 import { IconButton } from "../Button";
 import { TrashIcon, MinusIcon, PlusIcon } from "../Icon";
@@ -8,7 +9,16 @@ type ProductCartItemProps = {
 };
 
 const ProductCartItem = ({ item }: ProductCartItemProps) => {
+  const { removeProductFromCart, addProductToCart } = useAppContext();
   const image = item.image[0]?.url;
+
+  const handleAddProductToCart = () => {
+    addProductToCart(item);
+  };
+
+  const handleRemoveProductFromCart = () => {
+    removeProductFromCart(item);
+  };
 
   return (
     <div className="rounded-2xl bg-white flex flex-col xs:flex-row w-full shadow overflow-hidden w-full mb-4">
@@ -22,13 +32,21 @@ const ProductCartItem = ({ item }: ProductCartItemProps) => {
         </div>
       </div>
       <div className="flex flex-row xs:flex-col items-center xs:items-end justify-between xs:justify-center p-4">
-        <div className="xs:mb-4">
-          <IconButton icon={<TrashIcon small />} />
+        <div className="xs:mb-4 h-full">
+          {item.count > 1 && <IconButton icon={<TrashIcon small />} />}
         </div>
         <div className="flex items-center bg-gray-100 rounded-full ">
-          <IconButton round icon={<MinusIcon small />} />
+          <IconButton
+            onClick={handleRemoveProductFromCart}
+            round
+            icon={item.count === 1 ? <TrashIcon small /> : <MinusIcon small />}
+          />
           <span className="mx-4 text-md font-semibold">{item.count}</span>
-          <IconButton round icon={<PlusIcon small />} />
+          <IconButton
+            onClick={handleAddProductToCart}
+            round
+            icon={<PlusIcon small />}
+          />
         </div>
       </div>
     </div>
