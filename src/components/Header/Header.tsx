@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { IconButton } from "../Button";
 import Search from "../Icon/Search";
-import ShoppingCart from "../Icon/ShoppingCart";
+import CartButton from "./CartButton";
 
 const Header = ({}) => {
   return (
@@ -13,7 +13,7 @@ const Header = ({}) => {
         </Link>
         <div className="flex items-center gap-x-2">
           <IconButton icon={<Search />} href="#" />
-          <IconButton icon={<ShoppingCart />} text="100₺" href="/cart" />
+          <CartButton />
         </div>
       </div>
     </div>
