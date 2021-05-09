@@ -15,25 +15,48 @@ function MyApp({ Component, pageProps }) {
     },
   });
 
-  const removeProductToCart = useCallback((_product) => {
-    const products = state.shoppingCart.products.map(
-      (product) => product != _product
-    );
-    setState({
-      shoppingCart: {
-        products,
-      },
-    });
-  }, []);
+  const removeProductToCart = useCallback(
+    (_product) => {
+      // const products = state.shoppingCart.products.map(
+      //   (product) => product != _product
+      // );
+      // setState({
+      //   shoppingCart: {
+      //     products,
+      //   },
+      // });
+    },
+    [state]
+  );
 
-  const addProductToCart = useCallback((_product) => {
-    const products = state.shoppingCart.products;
-    setState({
-      shoppingCart: {
-        products: [...products, _product],
-      },
-    });
-  }, []);
+  const addProductToCart = useCallback(
+    (_product) => {
+      let products = state.shoppingCart.products;
+
+      const productInCart = products.find((_prd) => _prd.id === _product.id);
+      if (productInCart) {
+        setState({
+          shoppingCart: {
+            products: state.shoppingCart.products.map((_prd) => {
+              if (_prd.id === productInCart.id) {
+                return {
+                  ...productInCart,
+                  count: productInCart.count + 1,
+                };
+              } else return _prd;
+            }),
+          },
+        });
+      } else {
+        setState({
+          shoppingCart: {
+            products: [...products, { ..._product, count: 1 }],
+          },
+        });
+      }
+    },
+    [state]
+  );
 
   const appContextVariables = useMemo(
     () => ({
