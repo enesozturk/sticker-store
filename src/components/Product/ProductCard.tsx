@@ -1,11 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-
-type ProductProps = {
-  id: number;
-  title: string;
-  price: string;
-};
+import { ProductProps } from "../../types/product";
 
 type ProductCardProps = {
   item: ProductProps;
@@ -14,7 +9,7 @@ type ProductCardProps = {
 };
 
 const ProductCard = ({ item, isFirst, isLast }: ProductCardProps) => {
-  const image = item.image?.[0].url;
+  const image = item.image[0]?.url;
   const imageLoader = ({ src }) => {
     return `http://localhost:1337${src}`;
   };
