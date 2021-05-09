@@ -1,11 +1,32 @@
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { useAppContext } from "../../hooks/useAppContext";
+import { ShoppingCartProductProps } from "../../types/shoppingCart";
 
 const CheckoutSummary = () => {
+  const [productTotal, setProductTotal] = useState(0);
+  const { shoppingCart } = useAppContext();
+
+  const calculatePrice = (products: ShoppingCartProductProps[]) => {
+    let totalPrice: number = 0;
+
+    products.map((prd) => {
+      totalPrice += prd.price * prd.count;
+    });
+    return totalPrice;
+  };
+
+  useEffect(() => {
+    setProductTotal(calculatePrice(shoppingCart.products));
+  }, [shoppingCart]);
+
   return (
     <div className="bg-white rounded-2xl shadow flex flex-col px-6 py-4 w-full">
       <div className="flex justify-between">
         <span className="text-xl font-semibold uppercase">Total</span>
-        <span className="text-xl">65₺</span>
+        <span className="text-xl">
+          {productTotal ? `${productTotal}₺` : `-`}
+        </span>
       </div>
       <div className="border border-gray-100 my-2"></div>
       <div className="flex flex-col mb-4">
