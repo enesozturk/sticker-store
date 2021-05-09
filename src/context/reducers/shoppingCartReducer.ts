@@ -42,7 +42,7 @@ export const shoppingCartReducer = (state, action) => {
   switch (action.type) {
     case INITIALIZE_SHOPPING_CART:
       const shoppingCartFromStorage = readStorage("shoppingCart");
-      return shoppingCartFromStorage;
+      return shoppingCartFromStorage || { shoppingCart: { products: [] } };
     case ADD_PRODUCT:
       return addProductToCart(action.product, state);
     case REMOVE_PRODUCT:

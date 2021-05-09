@@ -3,9 +3,6 @@ import { ShoppingCartProductProps } from "../types/shoppingCart";
 import { useAppContext } from "./useAppContext";
 
 export const useShoppingCart = () => {
-  const {
-    shoppingCart: { products },
-  } = useAppContext();
   const [productTotal, setProductTotal] = useState(0);
   const { shoppingCart } = useAppContext();
 
@@ -19,7 +16,7 @@ export const useShoppingCart = () => {
   };
 
   useEffect(() => {
-    setProductTotal(calculatePrice(shoppingCart.products));
+    shoppingCart && setProductTotal(calculatePrice(shoppingCart.products));
   }, [shoppingCart]);
 
   return { productTotal };
