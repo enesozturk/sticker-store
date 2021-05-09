@@ -4,9 +4,11 @@ import { Button } from "../src/components/Button";
 import { CheckoutSection } from "../src/components/Checkout";
 import { PageHeader } from "../src/components/Header";
 import Input from "../src/components/Input";
+import { useShoppingCart } from "../src/hooks";
 
 function Checkout({}) {
   const [section, setSection] = useState(0);
+  const { productTotal } = useShoppingCart();
 
   const handleActivateSection = (sectionIndex: number) => {
     setSection(sectionIndex);
@@ -17,7 +19,7 @@ function Checkout({}) {
       <PageHeader
         rightTitle="Checkout"
         rightDescription="Complete your order with cridentials"
-        leftTitle="85₺"
+        leftTitle={`${productTotal}₺`}
         leftDescription="TOTAL AMOUNT"
       />
       <CheckoutSection

@@ -1,24 +1,8 @@
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { useAppContext } from "../../hooks/useAppContext";
-import { ShoppingCartProductProps } from "../../types/shoppingCart";
+import { useShoppingCart } from "../../hooks";
 
 const CheckoutSummary = () => {
-  const [productTotal, setProductTotal] = useState(0);
-  const { shoppingCart } = useAppContext();
-
-  const calculatePrice = (products: ShoppingCartProductProps[]) => {
-    let totalPrice: number = 0;
-
-    products.map((prd) => {
-      totalPrice += prd.price * prd.quantity;
-    });
-    return totalPrice;
-  };
-
-  useEffect(() => {
-    setProductTotal(calculatePrice(shoppingCart.products));
-  }, [shoppingCart]);
+  const { productTotal } = useShoppingCart();
 
   return (
     <div className="bg-white rounded-2xl shadow flex flex-col px-6 py-4 w-full">

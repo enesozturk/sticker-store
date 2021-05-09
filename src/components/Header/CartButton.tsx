@@ -1,25 +1,9 @@
-import { useEffect, useState } from "react";
-import { useAppContext } from "../../hooks/useAppContext";
-import { ShoppingCartProductProps } from "../../types/shoppingCart";
+import { useShoppingCart } from "../../hooks";
 import { IconButton } from "../Button";
 import ShoppingCart from "../Icon/ShoppingCart";
 
 const CartButton = () => {
-  const [productTotal, setProductTotal] = useState(0);
-  const { shoppingCart } = useAppContext();
-
-  const calculatePrice = (products: ShoppingCartProductProps[]) => {
-    let totalPrice: number = 0;
-
-    products.map((prd) => {
-      totalPrice += prd.price * prd.quantity;
-    });
-    return totalPrice;
-  };
-
-  useEffect(() => {
-    setProductTotal(calculatePrice(shoppingCart.products));
-  }, [shoppingCart]);
+  const { productTotal } = useShoppingCart();
 
   return (
     <IconButton
