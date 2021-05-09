@@ -8,7 +8,7 @@ function Sticker({ ...props }) {
 
 export async function getStaticPaths() {
   const products = await getProducts();
-  const paths = products.map((product) => {
+  const paths = products?.map((product) => {
     return { params: { id: product.id.toString() } };
   });
   return { paths, fallback: "blocking" };

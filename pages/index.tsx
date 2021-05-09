@@ -13,8 +13,8 @@ export default function Home({ ...props }) {
       </Head>
 
       <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-1 sm:gap-x-4 w-full">
-        {products?.map((item) => {
-          return <ProductCard item={item} />;
+        {products?.map((item, index) => {
+          return <ProductCard key={index} item={item} />;
         })}
       </div>
     </>
