@@ -6,7 +6,7 @@ export interface IAppContextProps {
   shoppingCart: ShoppingCartProps;
   setProducts: (products: ProductProps[]) => void;
   addProductToCart: (product: ProductProps) => void;
-  removeProductToCart: (product: ProductProps) => void;
+  removeProductFromCart: (product: ProductProps) => void;
 }
 
 export const AppContext = createContext<IAppContextProps | null>(null);
