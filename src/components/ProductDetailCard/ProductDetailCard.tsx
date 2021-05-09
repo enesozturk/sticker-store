@@ -1,15 +1,12 @@
-import Image from "next/image";
 import HeartIcon from "../Icon/HeartIcon";
 import { Button, IconButton, TypeButton } from "../Button";
 import { useAppContext } from "../../hooks/useAppContext";
+import Image from "../Image";
 
 const ProductCard = ({ item }) => {
   const { addProductToCart } = useAppContext();
 
   const image = item.image?.[0].url;
-  const imageLoader = ({ src }) => {
-    return `http://localhost:1337${src}`;
-  };
 
   const handleAddProductToCart = () => {
     addProductToCart(item);
@@ -18,14 +15,7 @@ const ProductCard = ({ item }) => {
   return (
     <div className="rounded-2xl bg-white flex flex-col sm:flex-row w-full shadow overflow-hidden w-full  mb-4">
       <div className="flex-1 p-8 flex justify-center items-center">
-        <Image
-          loader={imageLoader}
-          src={image}
-          alt="product image"
-          width={200}
-          height={200}
-          className="h-48"
-        />
+        <Image src={image} size={200} className="h-48" />
       </div>
       <div className="flex-1 flex flex-col items-start bg-gray-100 p-8">
         <span className="text-2xl font-semibold mb-4">{item.title}</span>
