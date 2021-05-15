@@ -1,15 +1,18 @@
 export function getStrapiURL(path) {
-  return `${
-    process.env.NODE_ENV == "development"
-      ? "http://localhost:1337"
-      : process.env.NEXT_PUBLIC_STRAPI_API_URL
-  }${path}`;
+  return `${process.env.NEXT_PUBLIC_NOTION_API_DB_URL}/${path}`;
 }
 
-// Helper to make GET requests to Strapi
-export async function fetchAPI(path) {
+export async function fetchAPI(path, method = "GET") {
   const requestUrl = getStrapiURL(path);
-  const response = await fetch(requestUrl);
+
+  const response = await fetch(requestUrl, {
+    method,
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTION_API_SECRET_KEY}`,
+    },
+  });
+
   const data = await response.json();
   return data;
 }
@@ -25,7 +28,7 @@ export async function getCategory(slug) {
 }
 
 export async function getProducts() {
-  const products = await fetchAPI("/products");
+  const products = await fetchAPI("query", "POST");
   return products;
 }
 
