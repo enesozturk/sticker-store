@@ -21,7 +21,7 @@ function MyApp({ Component, pageProps }) {
 MyApp.getInitialProps = async (ctx) => {
   const appProps = await App.getInitialProps(ctx);
 
-  const categories = await getCategories();
+  const categories = [];
   const products = await getProducts();
   return {
     ...appProps,
