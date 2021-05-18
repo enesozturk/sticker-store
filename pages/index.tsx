@@ -1,7 +1,7 @@
-import Head from "next/head";
 import Page from "../src/components/Page";
 
 import { ProductCard } from "../src/components/Product";
+import { getProducts } from "../src/utils/api";
 
 export default function Home({ ...props }) {
   const { products } = props;
@@ -15,4 +15,10 @@ export default function Home({ ...props }) {
       </div>
     </Page>
   );
+}
+
+export async function getStaticProps({ params }) {
+  const products = await getProducts();
+
+  return { props: { products }, revalidate: 3600 };
 }
