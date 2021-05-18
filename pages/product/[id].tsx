@@ -1,9 +1,15 @@
+import Page from "../../src/components/Page";
 import ProductDetailCard from "../../src/components/ProductDetailCard";
 import { getProduct, getProducts } from "../../src/utils/api";
 
 function Sticker({ ...props }) {
   const { product } = props;
-  return <ProductDetailCard item={product} />;
+
+  return (
+    <Page title={product.title}>
+      <ProductDetailCard item={product} />
+    </Page>
+  );
 }
 
 export async function getStaticPaths() {
