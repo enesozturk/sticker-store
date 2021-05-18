@@ -28,6 +28,7 @@ function Checkout({}) {
           onPress={handleActivateSection}
           step="1"
           title="Account"
+          description="Checking out as a guest? You'll be able to save your details to create an account with us later."
           isOpen={section == 1}
           content={
             <div className="w-full flex flex-col xs:flex-row gap-2 w-full sm:w-2/3 items-start xs:items-end">
@@ -40,6 +41,7 @@ function Checkout({}) {
           onPress={handleActivateSection}
           step="2"
           title="Shipping"
+          description="Please enter a shipping address."
           isOpen={section == 2}
           content={
             <>
@@ -65,6 +67,7 @@ function Checkout({}) {
           onPress={handleActivateSection}
           step="3"
           title="Payment"
+          description="Please select a payment method."
           isOpen={section == 3}
         />
       </div>
