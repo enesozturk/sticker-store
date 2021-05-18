@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { NotionQueryData } from "../types/notion";
+import { NotionDatabaseResponse } from "../types/notion";
 
-export const useNotionData = (data: NotionQueryData) => {
+export const useNotionData = (data: NotionDatabaseResponse) => {
   const [normalizedData, setNormalizedData] = useState([]);
 
   useEffect(() => {
