@@ -3,7 +3,6 @@ import "../src/styles/globals.css";
 import App from "next/app";
 
 import { Header } from "../src/components/Header";
-import { getCategories, getProducts } from "../src/utils/api";
 
 import { ShoppingCartProvider } from "../src/context/providers";
 
@@ -17,16 +16,5 @@ function MyApp({ Component, pageProps }) {
     </ShoppingCartProvider>
   );
 }
-
-MyApp.getInitialProps = async (ctx) => {
-  const appProps = await App.getInitialProps(ctx);
-
-  const categories = [];
-  const products = await getProducts();
-  return {
-    ...appProps,
-    pageProps: { categories, products, path: ctx.pathname },
-  };
-};
 
 export default MyApp;
