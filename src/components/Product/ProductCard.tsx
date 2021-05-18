@@ -21,8 +21,8 @@ const ProductCard = ({ item, isFirst, isLast }: ProductCardProps) => {
             : "justify-self-center"
         }`}
       >
-        <div className="flex justify-center items-center">
-          <Image src={item.image} size={200} />
+        <div className="flex justify-center items-center py-4">
+          <Image src={item.image} size={120} />
         </div>
         <div className="flex flex-col bg-gray-100 p-4">
           <span className="font-semibold">{item.title}</span>
