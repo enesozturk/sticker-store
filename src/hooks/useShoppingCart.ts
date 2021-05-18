@@ -9,7 +9,7 @@ export const useShoppingCart = () => {
   const calculatePrice = (products: ShoppingCartProductProps[]) => {
     let totalPrice: number = 0;
 
-    products.map((prd) => {
+    products?.map((prd) => {
       totalPrice += prd.price * prd.quantity;
     });
     return totalPrice;
