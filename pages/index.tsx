@@ -21,5 +21,5 @@ export default function Home({ ...props }) {
 export async function getStaticProps({ params }) {
   const products = await getProducts();
 
-  return { props: { products }, revalidate: 1000 };
+  return { props: { products }, revalidate: 3600 };
 }

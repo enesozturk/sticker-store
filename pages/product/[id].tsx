@@ -23,7 +23,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const product = await getProduct(params.id);
 
-  return { props: { product }, revalidate: 1000 };
+  return { props: { product }, revalidate: 3600 };
 }
 
 export default Sticker;
