@@ -21,7 +21,5 @@ export const normalizeDatabaseResponse = (data: NotionDatabaseResponse) => {
 };
 
 export const normalizePageResponse = (data: NotionRowData) => {
-  console.log(data);
-
   return normalizePageDetails(data);
 };

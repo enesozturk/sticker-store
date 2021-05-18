@@ -9,7 +9,6 @@ export function getStrapiURL(path) {
 
 export async function fetchAPI(path, method = "GET") {
   const requestUrl = getStrapiURL(path);
-  console.log(requestUrl);
 
   const response = await fetch(requestUrl, {
     method,
