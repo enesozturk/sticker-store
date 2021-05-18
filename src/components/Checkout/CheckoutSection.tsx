@@ -1,6 +1,7 @@
 type CheckoutSectionProps = {
   step: string;
   title: string;
+  description: string;
   isOpen?: boolean;
   content?: React.ReactNode;
   onPress?: (arg: number) => void;
@@ -9,6 +10,7 @@ type CheckoutSectionProps = {
 const CheckoutSection = ({
   step,
   title,
+  description,
   isOpen = false,
   content,
   onPress,
@@ -30,10 +32,7 @@ const CheckoutSection = ({
           <span className="text-xl font-semibold w-full text-left leading-10">
             {title}
           </span>
-          <p className="text-gray-400  mb-4">
-            Checking out as a Guest? You'll be able to save your details to
-            create an account with us later.
-          </p>
+          <p className="text-gray-400  mb-4">{description}</p>
 
           {isOpen && content}
         </div>
