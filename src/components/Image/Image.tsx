@@ -1,15 +1,18 @@
 import NextImage from "next/image";
 
 type ImageProps = {
-  src: string;
+  local?: boolean;
+  src?: string;
   size: number;
   className?: string;
 };
 
-const Image = ({ src, size, className, ...props }: ImageProps) => {
+const Image = ({ local, src, size, className, ...props }: ImageProps) => {
   const imageLoader = ({ src }) => {
     return process.env.NODE_ENV == "development"
-      ? `http://localhost:1337${src}`
+      ? local
+        ? src
+        : `http://localhost:1337${src}`
       : `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${src}`;
   };
 
