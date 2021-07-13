@@ -1,18 +1,33 @@
 import { useState } from "react";
 
+import { useRouter } from "next/router";
+
 import { Button } from "../src/components/Button";
 import { CheckoutSection } from "../src/components/Checkout";
 import { PageHeader } from "../src/components/Header";
 import Input from "../src/components/Input";
 import Page from "../src/components/Page";
-import { useShoppingCart } from "../src/hooks";
+import { useCraftgate, useShoppingCart } from "../src/hooks";
 
 function Checkout({}) {
   const [section, setSection] = useState(0);
   const { productTotal } = useShoppingCart();
+  const { createPayment } = useCraftgate();
+  const router = useRouter();
 
   const handleActivateSection = (sectionIndex: number) => {
     setSection(sectionIndex);
+  };
+
+  const handleCreatePayment = () => {
+    createPayment([{ name: "iPhone 11", price: 10000 }])
+      .then((resposne) => {
+        console.log(resposne);
+        router.replace("/order-completed");
+      })
+      .catch((error) => {
+        throw Error(error);
+      });
   };
 
   return (
@@ -33,7 +48,13 @@ function Checkout({}) {
           content={
             <div className="w-full flex flex-col xs:flex-row gap-2 w-full sm:w-2/3 items-start xs:items-end">
               <Input title="E-mail" />
-              <Button text="Continue" />
+              <Button
+                text="Continue"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSection(2);
+                }}
+              />
             </div>
           }
         />
@@ -60,6 +81,13 @@ function Checkout({}) {
                 <Input title="State" />
                 <Input title="Postal Code" />
               </div>
+              <Button
+                text="Continue"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSection(3);
+                }}
+              />
             </>
           }
         />
@@ -69,6 +97,11 @@ function Checkout({}) {
           title="Payment"
           description="Please select a payment method."
           isOpen={section == 3}
+          content={
+            <>
+              <Button text="Complete Shopping" onClick={handleCreatePayment} />
+            </>
+          }
         />
       </div>
     </Page>

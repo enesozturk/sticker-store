@@ -1,7 +1,7 @@
 const Input = ({ title }) => {
   return (
     <div className="flex flex-col justify-start items-start flex-1">
-      <span className="font-light text-xs text-gray-800">{title}</span>
+      <span className="font-light text-xs text-gray-800 mb-1">{title}</span>
       <input
         onClick={(e) => {
           e.stopPropagation();
