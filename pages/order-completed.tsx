@@ -18,7 +18,7 @@ function OrderCompleted() {
           about your order!
         </p>
         <Button
-          className="bg-gray-200 text-gray-500 w-auto justify-center mt-8 hover:bg-gray-300 transition"
+          className="text-gray-500 w-auto justify-center mt-8"
           onClick={() => {
             router.push("/");
           }}
