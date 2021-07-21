@@ -20,18 +20,22 @@ const addProductToCart = (product, state) => {
   return { ...state, shoppingCart: { products } };
 };
 
-const removeProductFromCart = (product, state) => {
+const removeProductFromCart = (product, removeAll, state) => {
   const products = [...state.shoppingCart.products];
   const productIndex = products.findIndex((item) => item.id === product.id);
 
-  const updatedItem = {
-    ...products[productIndex],
-  };
-  updatedItem.quantity--;
-  if (updatedItem.quantity <= 0) {
+  if (removeAll) {
     products.splice(productIndex, 1);
   } else {
-    products[productIndex] = updatedItem;
+    const updatedItem = {
+      ...products[productIndex],
+    };
+    updatedItem.quantity--;
+    if (updatedItem.quantity <= 0) {
+      products.splice(productIndex, 1);
+    } else {
+      products[productIndex] = updatedItem;
+    }
   }
 
   writeStorage(SHOPPING_CART_LIST, { shoppingCart: { products } });
@@ -46,7 +50,7 @@ export const shoppingCartReducer = (state, action) => {
     case ADD_PRODUCT:
       return addProductToCart(action.product, state);
     case REMOVE_PRODUCT:
-      return removeProductFromCart(action.product, state);
+      return removeProductFromCart(action.product, action.removeAll, state);
     default:
       return state;
   }

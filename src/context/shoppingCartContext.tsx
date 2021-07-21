@@ -5,7 +5,7 @@ import { ShoppingCartProps } from "../types/shoppingCart";
 export interface IShoppingCartContext {
   shoppingCart: ShoppingCartProps;
   addProductToCart: (product: ProductProps) => void;
-  removeProductFromCart: (product: ProductProps) => void;
+  removeProductFromCart: (product: ProductProps, removeAll?: boolean) => void;
 }
 
 export const ShoppingCartContext = createContext<IShoppingCartContext | null>(

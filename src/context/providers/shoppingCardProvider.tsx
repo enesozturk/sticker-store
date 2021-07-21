@@ -18,8 +18,8 @@ export const ShoppingCartProvider = ({ children }) => {
     dispatch({ type: ADD_PRODUCT, product });
   };
 
-  const removeProductFromCart = (product) => {
-    dispatch({ type: REMOVE_PRODUCT, product });
+  const removeProductFromCart = (product, removeAll) => {
+    dispatch({ type: REMOVE_PRODUCT, product, removeAll });
   };
 
   const initializeShoppingCart = () => {
