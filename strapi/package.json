@@ -1,0 +1,42 @@
+{
+  "name": "sticker-store-backend",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A Strapi application",
+  "scripts": {
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi",
+    "gcp-build": "strapi build",
+    "reset-user": "strapi admin:reset-user-password --email=enes@admin.com --password=enes.admin.111"
+  },
+  "dependencies": {
+    "knex": "^0.95.4",
+    "pg": "^8.5.1",
+    "pg-connection-string": "^2.5.0",
+    "sqlite3": "5.0.0",
+    "strapi": "3.5.4",
+    "strapi-admin": "3.5.4",
+    "strapi-connector-bookshelf": "3.5.4",
+    "strapi-plugin-content-manager": "3.5.4",
+    "strapi-plugin-content-type-builder": "3.5.4",
+    "strapi-plugin-email": "3.5.4",
+    "strapi-plugin-upload": "3.5.4",
+    "strapi-plugin-users-permissions": "3.5.4",
+    "strapi-provider-upload-aws-s3": "^3.5.4",
+    "strapi-provider-upload-google-cloud-storage": "^3.4.6",
+    "strapi-utils": "3.5.4"
+  },
+  "author": {
+    "name": "A Strapi developer"
+  },
+  "strapi": {
+    "uuid": "10adf404-4dff-42e6-a437-a3ba010bcd63"
+  },
+  "engines": {
+    "node": ">=10",
+    "npm": ">6.0.0"
+  },
+  "license": "MIT"
+}
