@@ -20,6 +20,10 @@ const ProductCartItem = ({ item }: ProductCartItemProps) => {
     removeProductFromCart(item);
   };
 
+  const handleRemoveAllProductsFromCart = () => {
+    removeProductFromCart(item, true);
+  };
+
   return (
     <div className="rounded-2xl bg-white flex flex-col xs:flex-row w-full shadow overflow-hidden w-full mb-4">
       <div className="flex flex-row xs:flex-col sm:flex-row flex-1">
@@ -33,7 +37,12 @@ const ProductCartItem = ({ item }: ProductCartItemProps) => {
       </div>
       <div className="flex flex-row xs:flex-col items-center xs:items-end justify-between xs:justify-center p-4">
         <div className="xs:mb-4 h-full">
-          {item.quantity > 1 && <IconButton icon={<TrashIcon small />} />}
+          {item.quantity > 1 && (
+            <IconButton
+              onClick={handleRemoveAllProductsFromCart}
+              icon={<TrashIcon small />}
+            />
+          )}
         </div>
         <div className="flex items-center bg-gray-100 rounded-full ">
           <IconButton
