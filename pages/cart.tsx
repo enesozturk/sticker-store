@@ -1,3 +1,4 @@
+import { CardEmpty } from "../src/components/Cart";
 import { PageHeader } from "../src/components/Header";
 import { ProductCartItem } from "../src/components/Product";
 import { CheckoutSummary } from "../src/components/Checkout";
@@ -8,6 +9,15 @@ function Cart() {
   const {
     shoppingCart: { products },
   } = useAppContext();
+
+  const isEmpty = products?.length === 0;
+
+  if (isEmpty)
+    return (
+      <Page title="Cart">
+        <CardEmpty />
+      </Page>
+    );
 
   return (
     <Page title="Cart">
