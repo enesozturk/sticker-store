@@ -6,10 +6,9 @@ export function getStrapiURL(path) {
   }${path}`;
 }
 
-// Helper to make GET requests to Strapi
-export async function fetchAPI(path) {
+export async function fetchAPI(path: string, options: RequestInit = {}) {
   const requestUrl = getStrapiURL(path);
-  const response = await fetch(requestUrl);
+  const response = await fetch(requestUrl, options);
   const data = await response.json();
   return data;
 }
@@ -32,4 +31,26 @@ export async function getProducts() {
 export async function getProduct(slug) {
   const product = await fetchAPI(`/products/${slug}`);
   return product;
+}
+
+export async function createOrder(orderDetails) {
+  const order = await fetchAPI(`/orders`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ ...orderDetails }),
+  });
+  return order;
+}
+
+export async function updateOrder(orderId, orderDetails) {
+  const order = await fetchAPI(`/orders/${orderId}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ ...orderDetails }),
+  });
+  return order;
 }
