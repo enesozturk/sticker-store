@@ -1,10 +1,10 @@
 import HeartIcon from "../Icon/HeartIcon";
 import { Button, IconButton, TypeButton } from "../Button";
-import { useAppContext } from "../../hooks/useAppContext";
+import { useShoppingCardContext } from "../../hooks/useShoppingCardContext";
 import Image from "../Image";
 
 const ProductCard = ({ item }) => {
-  const { addProductToCart } = useAppContext();
+  const { addProductToCart } = useShoppingCardContext();
 
   const image = item.image?.[0].url;
 

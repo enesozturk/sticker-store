@@ -2,13 +2,13 @@ import { CardEmpty } from "../src/components/Cart";
 import { PageHeader } from "../src/components/Header";
 import { ProductCartItem } from "../src/components/Product";
 import { CheckoutSummary } from "../src/components/Checkout";
-import { useAppContext } from "../src/hooks/useAppContext";
+import { useShoppingCardContext } from "../src/hooks/useShoppingCardContext";
 import Page from "../src/components/Page";
 
 function Cart() {
   const {
     shoppingCart: { products },
-  } = useAppContext();
+  } = useShoppingCardContext();
 
   const isEmpty = products?.length === 0;
 

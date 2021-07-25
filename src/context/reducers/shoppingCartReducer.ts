@@ -3,6 +3,7 @@ import { readStorage, writeStorage } from "../../utils/storage";
 
 export const ADD_PRODUCT = "ADD_PRODUCT";
 export const REMOVE_PRODUCT = "REMOVE_PRODUCT";
+export const RESET_CART = "RESET_CART";
 export const INITIALIZE_SHOPPING_CART = "INITIALIZE_SHOPPING_CART";
 
 const addProductToCart = (product, state) => {
@@ -51,6 +52,8 @@ export const shoppingCartReducer = (state, action) => {
       return addProductToCart(action.product, state);
     case REMOVE_PRODUCT:
       return removeProductFromCart(action.product, action.removeAll, state);
+    case RESET_CART:
+      return { shoppingCart: { products: [] } };
     default:
       return state;
   }

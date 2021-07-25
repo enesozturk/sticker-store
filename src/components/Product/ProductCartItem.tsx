@@ -1,4 +1,4 @@
-import { useAppContext } from "../../hooks/useAppContext";
+import { useShoppingCardContext } from "../../hooks/useShoppingCardContext";
 import { ShoppingCartProductProps } from "../../types/shoppingCart";
 import { IconButton } from "../Button";
 import { TrashIcon, MinusIcon, PlusIcon } from "../Icon";
@@ -9,7 +9,7 @@ type ProductCartItemProps = {
 };
 
 const ProductCartItem = ({ item }: ProductCartItemProps) => {
-  const { removeProductFromCart, addProductToCart } = useAppContext();
+  const { removeProductFromCart, addProductToCart } = useShoppingCardContext();
   const image = item.image[0]?.url;
 
   const handleAddProductToCart = () => {

@@ -3,6 +3,7 @@ import {
   ADD_PRODUCT,
   INITIALIZE_SHOPPING_CART,
   REMOVE_PRODUCT,
+  RESET_CART,
   shoppingCartReducer,
 } from "../reducers/shoppingCartReducer";
 import { ShoppingCartContext } from "../shoppingCartContext";
@@ -22,6 +23,10 @@ export const ShoppingCartProvider = ({ children }) => {
     dispatch({ type: REMOVE_PRODUCT, product, removeAll });
   };
 
+  const resetCart = () => {
+    dispatch({ type: RESET_CART });
+  };
+
   const initializeShoppingCart = () => {
     dispatch({ type: INITIALIZE_SHOPPING_CART });
   };
@@ -36,6 +41,7 @@ export const ShoppingCartProvider = ({ children }) => {
         ...state,
         addProductToCart: addProductToCart,
         removeProductFromCart: removeProductFromCart,
+        resetCart: resetCart,
       }}
     >
       {children}

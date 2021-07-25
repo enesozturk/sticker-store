@@ -6,6 +6,7 @@ export interface IShoppingCartContext {
   shoppingCart: ShoppingCartProps;
   addProductToCart: (product: ProductProps) => void;
   removeProductFromCart: (product: ProductProps, removeAll?: boolean) => void;
+  resetCart: () => void;
 }
 
 export const ShoppingCartContext = createContext<IShoppingCartContext | null>(
