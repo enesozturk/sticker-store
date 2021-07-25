@@ -5,6 +5,7 @@ type CheckoutSectionProps = {
   isOpen?: boolean;
   content?: React.ReactNode;
   onPress?: (arg: number) => void;
+  className?: string;
 };
 
 const CheckoutSection = ({
@@ -14,12 +15,13 @@ const CheckoutSection = ({
   isOpen = false,
   content,
   onPress,
+  className,
 }: CheckoutSectionProps) => {
   const index = parseInt(step);
 
   return (
     <button
-      className="bg-white rounded-2xl flex flex-row px-6 py-4 w-full border border-gray-1 mb-2 focus:outline-none"
+      className={`bg-white rounded-2xl flex flex-row px-6 py-4 w-full border border-gray-1 mb-2 focus:outline-none ${className}`}
       onClick={() => {
         onPress(index);
       }}
