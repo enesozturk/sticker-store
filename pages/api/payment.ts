@@ -14,7 +14,7 @@ const paymentDetails = {
   paymentGroup: Craftgate.Model.PaymentGroup.ListingOrSubscription,
   card: {
     cardHolderName: "Haluk Demir",
-    cardNumber: "5258640000000001",
+    cardNumber: "4132260000000003",
     expireYear: "2044",
     expireMonth: "07",
     cvc: "000",
@@ -35,9 +35,9 @@ export default (req, res) => {
       items,
     })
     .then(function (result) {
-      res.status(200).json({ message: "Payment successful", ...result });
+      res.status(200).json(result);
     })
     .catch(function (err) {
-      throw Error(err);
+      res.send(err);
     });
 };
