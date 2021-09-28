@@ -1,6 +1,6 @@
 import Page from "../../src/components/Page";
 import ProductDetailCard from "../../src/components/ProductDetailCard";
-import { getProduct, getProducts } from "../../src/utils/api";
+import { getRecord, getRecords } from "../../src/utils/airtable";
 
 function Sticker({ ...props }) {
   const { product } = props;
@@ -13,7 +13,7 @@ function Sticker({ ...props }) {
 }
 
 export async function getStaticPaths() {
-  const products = await getProducts();
+  const products = await getRecords("Product");
   const paths = products?.map((product) => {
     return { params: { id: product.id.toString() } };
   });
@@ -21,7 +21,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const product = await getProduct(params.id);
+  const product = await getRecord("Product", params.id);
 
   return { props: { product }, revalidate: 3600 };
 }

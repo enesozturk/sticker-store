@@ -1,7 +1,7 @@
 import Page from "../src/components/Page";
 
 import { ProductCard } from "../src/components/Product";
-import { getProducts } from "../src/utils/api";
+import { getRecords } from "../src/utils/airtable";
 
 export default function Home({ ...props }) {
   const { products } = props;
@@ -18,7 +18,7 @@ export default function Home({ ...props }) {
 }
 
 export async function getStaticProps({ params }) {
-  const products = await getProducts();
+  const products = await getRecords("Product");
 
   return { props: { products }, revalidate: 3600 };
 }
