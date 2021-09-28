@@ -10,8 +10,6 @@ type ProductCardProps = {
 };
 
 const ProductCard = ({ item, isFirst, isLast }: ProductCardProps) => {
-  const image = item.image[0]?.url;
-
   return (
     <Link href={`/product/${item.id}`}>
       <a
@@ -24,7 +22,7 @@ const ProductCard = ({ item, isFirst, isLast }: ProductCardProps) => {
         }`}
       >
         <div className="flex justify-center items-center py-4">
-          <Image src={image} size={120} />
+          <Image src={item.image} size={120} />
         </div>
         <div className="flex flex-col bg-gray-100 p-4">
           <span className="font-semibold">{item.title}</span>
