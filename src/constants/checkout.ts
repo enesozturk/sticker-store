@@ -1,4 +1,4 @@
-export const MOCK_ORDER = {
+export const MOCK_ORDER_INFORMATIONS = {
   email: "enesozturk.d@gmail.com",
   first_name: "Enes",
   last_name: "Ozturk",
