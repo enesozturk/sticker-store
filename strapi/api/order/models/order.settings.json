@@ -2,8 +2,7 @@
   "kind": "collectionType",
   "collectionName": "orders",
   "info": {
-    "name": "Order",
-    "description": ""
+    "name": "Order"
   },
   "options": {
     "increments": true,
@@ -11,39 +10,8 @@
     "draftAndPublish": true
   },
   "attributes": {
-    "order_date": {
-      "type": "datetime"
-    },
-    "email": {
-      "type": "email"
-    },
-    "first_name": {
-      "type": "string"
-    },
-    "last_name": {
-      "type": "string"
-    },
-    "address_line": {
-      "type": "text"
-    },
-    "city": {
-      "type": "string"
-    },
-    "country": {
-      "type": "string"
-    },
-    "state": {
-      "type": "string"
-    },
-    "postal_code": {
-      "type": "integer"
-    },
-    "order_code": {
-      "type": "uid"
-    },
     "is_paid": {
-      "type": "boolean",
-      "default": false
+      "type": "boolean"
     }
   }
 }
