@@ -1,5 +1,4 @@
 export type Order = {
   id: number;
-  payment_completed: boolean;
-  paid_price: number;
+  total_price: number;
 };
