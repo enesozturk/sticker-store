@@ -8,18 +8,18 @@ import { PageHeader } from "../src/components/Header";
 import Input from "../src/components/Input";
 import Page from "../src/components/Page";
 import {
+  useAirtable,
   useCraftgate,
   useShoppingCardContext,
   useShoppingCart,
 } from "../src/hooks";
-import { createOrder, updateOrder } from "../src/utils/api";
-import { MOCK_ORDER } from "../src/constants/checkout";
 
 function Checkout({}) {
   const [section, setSection] = useState(0);
   const { productTotal, getCartItemsForOrder } = useShoppingCart();
   const { resetCart } = useShoppingCardContext();
   const { createPayment } = useCraftgate();
+  const { createRecord } = useAirtable();
   const router = useRouter();
 
   const handleActivateSection = (sectionIndex: number) => {
@@ -27,26 +27,16 @@ function Checkout({}) {
   };
 
   const handleCreatePayment = () => {
-    createOrder(MOCK_ORDER)
-      .then((response) => {
-        if (response && response.id) {
-          const orderId = response.id;
-          createPayment(getCartItemsForOrder()).then((response) => {
-            if (response.ok)
-              updateOrder(orderId, { is_paid: true }).then((response) => {
-                if (response && response.id) {
-                  router.replace("/order-completed");
-                  resetCart();
-                }
-              });
-          });
-        } else {
-          throw Error(response);
-        }
-      })
-      .catch((error) => {
-        throw Error(error);
-      });
+    createPayment(getCartItemsForOrder()).then((response) => {
+      if (response.ok) {
+        createRecord("Order", [{ fields: { total_price: productTotal } }]).then(
+          () => {
+            router.replace("/order-completed");
+            resetCart();
+          }
+        );
+      }
+    });
   };
 
   return (
