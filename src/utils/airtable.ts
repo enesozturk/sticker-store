@@ -12,7 +12,7 @@ const getNormalizedRecord = (record: any) => {
 };
 
 const getNormalizedRecords = (records: any) => {
-  return records.map((record: any) => getNormalizedRecords(record));
+  return records.map((record: any) => getNormalizedRecord(record));
 };
 
 const getRecords = async (table: string) => {
@@ -36,4 +36,11 @@ const createRecord = async (table: string, fields: any) => {
   return data;
 };
 
-export { createRecord, getRecord, getRecords };
+export {
+  base,
+  createRecord,
+  getNormalizedRecord,
+  getNormalizedRecords,
+  getRecord,
+  getRecords,
+};
