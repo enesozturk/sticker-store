@@ -1,6 +1,7 @@
 import Page from "../src/components/Page";
 
 import { ProductCard } from "../src/components/Product";
+import { Product } from "../src/types/product";
 import { getRecords } from "../src/utils/airtable";
 
 export default function Home({ ...props }) {
@@ -9,7 +10,7 @@ export default function Home({ ...props }) {
   return (
     <Page title="Sticker Store">
       <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-1 sm:gap-x-4 w-full">
-        {products?.map((item, index) => {
+        {products?.map((item: Product, index: number) => {
           return <ProductCard key={index} item={item} />;
         })}
       </div>
@@ -17,7 +18,7 @@ export default function Home({ ...props }) {
   );
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps() {
   const products = await getRecords("Product");
 
   return { props: { products }, revalidate: 3600 };
