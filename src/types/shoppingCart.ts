@@ -1,9 +1,9 @@
-import { ProductProps } from "./product";
+import type { Product } from "./product";
 
-export type ShoppingCartProductProps = ProductProps & {
+export type ShoppingCartProduct = Product & {
   quantity: number;
 };
 
 export type ShoppingCartProps = {
-  products: ShoppingCartProductProps[];
+  products: ShoppingCartProduct[];
 };

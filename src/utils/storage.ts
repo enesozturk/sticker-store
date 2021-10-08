@@ -1,11 +1,11 @@
 import { SHOPPING_CART_LIST } from "../constants/storageKeys";
-import { ProductProps } from "../types/product";
+import type { Product } from "../types/product";
 import { ShoppingCartProps } from "../types/shoppingCart";
 
 type StorageData =
   | { shoppingCart: ShoppingCartProps }
-  | ProductProps
-  | ProductProps[]
+  | Product
+  | Product[]
   | null;
 
 export function writeStorage(key: string, data: StorageData) {
@@ -19,6 +19,6 @@ export function readStorage(key: string) {
   return JSON.parse(data);
 }
 
-export function updateShoppingCard(products: ProductProps[]) {
+export function updateShoppingCard(products: Product[]) {
   writeStorage(SHOPPING_CART_LIST, products);
 }

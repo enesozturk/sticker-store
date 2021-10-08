@@ -1,11 +1,11 @@
 import { useShoppingCardContext } from "../../hooks/useShoppingCardContext";
-import { ShoppingCartProductProps } from "../../types/shoppingCart";
+import type { ShoppingCartProduct } from "../../types/shoppingCart";
 import { IconButton } from "../Button";
 import { TrashIcon, MinusIcon, PlusIcon } from "../Icon";
 import Image from "../Image";
 
 type ProductCartItemProps = {
-  item: ShoppingCartProductProps;
+  item: ShoppingCartProduct;
 };
 
 const ProductCartItem = ({ item }: ProductCartItemProps) => {

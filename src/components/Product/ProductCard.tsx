@@ -1,10 +1,10 @@
 import Link from "next/link";
 
-import { ProductProps } from "../../types/product";
+import type { Product } from "../../types/product";
 import Image from "../../components/Image";
 
 type ProductCardProps = {
-  item: ProductProps;
+  item: Product;
   isFirst?: boolean;
   isLast?: boolean;
 };

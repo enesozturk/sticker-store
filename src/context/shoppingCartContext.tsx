@@ -1,11 +1,11 @@
 import { createContext } from "react";
-import { ProductProps } from "../types/product";
+import type { Product } from "../types/product";
 import { ShoppingCartProps } from "../types/shoppingCart";
 
 export interface IShoppingCartContext {
   shoppingCart: ShoppingCartProps;
-  addProductToCart: (product: ProductProps) => void;
-  removeProductFromCart: (product: ProductProps, removeAll?: boolean) => void;
+  addProductToCart: (product: Product) => void;
+  removeProductFromCart: (product: Product, removeAll?: boolean) => void;
   resetCart: () => void;
 }
 

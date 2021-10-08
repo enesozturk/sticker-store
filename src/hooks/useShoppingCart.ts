@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { ShoppingCartProductProps } from "../types/shoppingCart";
+import type { ShoppingCartProduct } from "../types/shoppingCart";
 import { useShoppingCardContext } from "./useShoppingCardContext";
 
 export const useShoppingCart = () => {
   const [productTotal, setProductTotal] = useState(0);
   const { shoppingCart } = useShoppingCardContext();
 
-  const calculatePrice = (products: ShoppingCartProductProps[]) => {
+  const calculatePrice = (products: ShoppingCartProduct[]) => {
     let totalPrice: number = 0;
 
     products.map((prd) => {

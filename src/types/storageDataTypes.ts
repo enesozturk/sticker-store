@@ -1,3 +1,3 @@
-import { ProductProps } from "./product";
+import type { Product } from "./product";
 
-export type ShoppingCartListProps = ProductProps[];
+export type ShoppingCartListProps = Product[];
