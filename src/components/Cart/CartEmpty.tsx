@@ -13,7 +13,7 @@ const CartEmpty = () => {
       <h1 className="text-4xl font-semibold	text-center pt-8">
         Your cart is empty.
       </h1>
-      <p className="text-lg text-center pt-4">
+      <p className="text-lg text-center pt-4 text-gray-500">
         Please add some products to your cart to proceed to checkout.
       </p>
       <Button

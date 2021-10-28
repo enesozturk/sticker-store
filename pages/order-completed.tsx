@@ -13,12 +13,12 @@ function OrderCompleted() {
         <h1 className="text-4xl font-semibold	text-center pt-8">
           Your order completed.
         </h1>
-        <p className="text-lg text-center pt-4">
+        <p className="text-lg text-center pt-4 text-gray-500">
           We will send you the details via email and SMS to keep you posted
           about your order!
         </p>
         <Button
-          className="text-gray-500 w-auto justify-center mt-8"
+          className="w-auto justify-center mt-8"
           onClick={() => {
             router.push("/");
           }}
