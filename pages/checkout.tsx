@@ -16,6 +16,7 @@ import {
 
 function Checkout({}) {
   const [section, setSection] = useState(0);
+  const [checkoutLoading, setCheckoutLoading] = useState(false);
   const { productTotal, getCartItemsForOrder } = useShoppingCart();
   const { resetCart } = useShoppingCardContext();
   const { createPayment } = useCraftgate();
@@ -27,10 +28,12 @@ function Checkout({}) {
   };
 
   const handleCreatePayment = () => {
+    setCheckoutLoading(true);
     createPayment(getCartItemsForOrder()).then((response) => {
       if (response.ok) {
         createRecord("Order", [{ fields: { total_price: productTotal } }]).then(
           () => {
+            setCheckoutLoading(false);
             router.replace("/order-completed");
             resetCart();
           }
@@ -131,6 +134,7 @@ function Checkout({}) {
                 <Button
                   text="Complete Shopping"
                   color="blue"
+                  loading={checkoutLoading}
                   onClick={handleCreatePayment}
                 />
               </div>
