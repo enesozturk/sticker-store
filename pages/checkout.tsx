@@ -19,7 +19,7 @@ function Checkout({}) {
   } = useForm();
 
   const submitForm = (data) => {
-    console.log(data);
+    handleCreatePayment(data);
   };
 
   return (
@@ -103,31 +103,36 @@ function Checkout({}) {
           <CheckoutSection className="mb-24" title="Payment">
             <div className="checkout-default-row">
               <Input
+                data-mask="(999)-999-9999"
                 title="Card Number"
-                type="number"
                 error={errors.cardNnumber}
-                {...register("cardNnumber", { required: false })}
+                {...register("cardNnumber", {
+                  required: true,
+                  pattern: {
+                    value: /^\d{4}-\d{4}-\d{4}-\d{4}$/,
+                    message: "Invalid card number",
+                  },
+                })}
               />
             </div>
             <div className="checkout-default-row">
               <Input
                 title="Card Holder Name"
                 error={errors.cardHolderName}
-                {...register("cardHolderName", { required: false })}
+                {...register("cardHolderName", { required: true })}
               />
             </div>
             <div className="checkout-default-row">
               <Input
                 title="Expiration Date (MM/YY)"
-                type="number"
                 error={errors.expirationDate}
-                {...register("expirationDate", { required: false })}
+                {...register("expireDate", { required: true })}
               />
               <Input
                 title="CVV"
                 type="number"
                 error={errors.cvvNumber}
-                {...register("cvvNumber", { required: false })}
+                {...register("cvc", { required: true, maxLength: 3 })}
               />
             </div>
             <div className="w-full flex justify-end">
