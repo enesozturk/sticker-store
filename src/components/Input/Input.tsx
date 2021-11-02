@@ -21,7 +21,9 @@ const Input = forwardRef(
           onClick={(e) => {
             e.stopPropagation();
           }}
-          className="px-4 py-1 border border-gray-300 rounded-md focus:outline-none h-10 w-full shadow"
+          className={`px-4 py-1 border border-gray-300 rounded-md focus:outline-none h-10 w-full shadow ${
+            error ? "border-red-400" : ""
+          }`}
         />
       </div>
     );
