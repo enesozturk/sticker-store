@@ -13,7 +13,6 @@ const Header = ({}) => {
           <Link href="/">
             <a className="text-xl font-semibold flex justify-between items-center">
               <Image local src="/sticker-store-128.png" size={32} />
-              <span className="ml-4">Sticker Store</span>
             </a>
           </Link>
         </div>
