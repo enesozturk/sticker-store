@@ -3,7 +3,7 @@ import "../src/styles/globals.css";
 import App from "next/app";
 
 import { Header } from "../src/components/Header";
-import { getRecords } from "../src/utils/airtable";
+import Footer from "../src/components/Footer";
 
 import { ShoppingCartProvider } from "../src/context/providers";
 
@@ -14,6 +14,7 @@ function MyApp({ Component, pageProps }) {
       <div className="mx-auto max-w-4xl flex justify-between items-center px-2 pt-8">
         <Component {...pageProps} />
       </div>
+      <Footer />
     </ShoppingCartProvider>
   );
 }
