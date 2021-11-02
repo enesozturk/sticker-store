@@ -15,7 +15,6 @@ import {
 } from "../src/hooks";
 
 function Checkout({}) {
-  const [section, setSection] = useState(0);
   const [checkoutLoading, setCheckoutLoading] = useState(false);
   const { productTotal, getCartItemsForOrder } = useShoppingCart();
   const { resetCart } = useShoppingCardContext();
@@ -23,19 +22,14 @@ function Checkout({}) {
   const { createRecord } = useAirtable();
   const router = useRouter();
 
-  const handleActivateSection = (sectionIndex: number) => {
-    setSection(sectionIndex);
-  };
-
   const handleCreatePayment = () => {
     setCheckoutLoading(true);
     createPayment(getCartItemsForOrder()).then((response) => {
       if (response.ok) {
         createRecord("Order", [{ fields: { total_price: productTotal } }]).then(
           () => {
-            setCheckoutLoading(false);
-            router.replace("/order-completed");
             resetCart();
+            router.replace("/order-completed");
           }
         );
       }
@@ -49,98 +43,57 @@ function Checkout({}) {
           rightTitle="Checkout"
           rightDescription="Complete your order with cridentials"
           leftTitle={`${productTotal}₺`}
-          leftDescription="TOTAL AMOUNT"
+          leftDescription="TOTAL"
         />
-        <CheckoutSection
-          onPress={handleActivateSection}
-          step="1"
-          title="Account"
-          description="Checking out as a guest? You'll be able to save your details to create an account with us later."
-          isOpen={section == 1}
-          content={
-            <div className="w-full flex flex-col xs:flex-row gap-2 sm:w-2/3 items-start xs:items-end">
-              <Input placeholder="E-mail" />
+        <div className="bg-gray-50 rounded-xl p-8 mb-16">
+          <CheckoutSection title="Contact Information" seperator>
+            <div className="checkout-email-row">
+              <Input title="E-mail" name="email" type="email" />
+            </div>
+          </CheckoutSection>
+          <CheckoutSection title="Shipping Information" seperator>
+            <div className="checkout-default-row">
+              <Input title="First Name" name="firstName" />
+              <Input title="Last Name" name="lastName" />
+            </div>
+            <div className="checkout-default-row">
+              <Input title="Phone Number" name="phoneNumber" type="phone" />
+              <Input title="Company" name="company" />
+            </div>
+            <div className="checkout-default-row">
+              <Input title="Address" name="address" />
+            </div>
+            <div className="checkout-default-row">
+              <Input title="City" name="city" />
+              <Input title="Country" name="country" />
+            </div>
+            <div className="checkout-default-row">
+              <Input title="State / Province" />
+              <Input title="Postal Code" type="number" />
+            </div>
+          </CheckoutSection>
+          <CheckoutSection className="mb-24" title="Payment">
+            <div className="checkout-default-row">
+              <Input title="Card Number" type="number" />
+            </div>
+            <div className="checkout-default-row">
+              <Input title="Card Holder Name" />
+            </div>
+            <div className="checkout-default-row">
+              <Input title="Expiration Date (MM/YY)" type="number" />
+              <Input title="CVV" type="number" />
+            </div>
+            <div className="w-full flex justify-end">
               <Button
-                text="Continue"
-                color="gray"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setSection(2);
-                }}
+                text="Complete Shopping"
+                color="blue"
+                className="w-full text-center mt-4"
+                loading={checkoutLoading}
+                onClick={handleCreatePayment}
               />
             </div>
-          }
-        />
-        <CheckoutSection
-          onPress={handleActivateSection}
-          step="2"
-          title="Shipping"
-          description="Please enter a shipping address."
-          isOpen={section == 2}
-          content={
-            <>
-              <div className="w-full flex flex-col xs:flex-row gap-2 items-start xs:items-end mb-4">
-                <Input placeholder="First Name" />
-                <Input placeholder="Last Name" />
-              </div>
-              <div className="w-full flex flex-col xs:flex-row gap-2 items-start xs:items-end mb-4">
-                <Input placeholder="T.C number" />
-                <Input placeholder="Phone Number" />
-              </div>
-              <div className="w-full flex flex-col xs:flex-row gap-2 items-start xs:items-end mb-4">
-                <Input placeholder="Address" />
-              </div>
-              <div className="w-full flex flex-col xs:flex-row gap-2 items-start xs:items-end mb-4">
-                <Input placeholder="City" />
-                <Input placeholder="Country" />
-              </div>
-              <div className="w-full flex flex-col xs:flex-row gap-2 items-start xs:items-end mb-4">
-                <Input placeholder="State" />
-                <Input placeholder="Postal Code" />
-              </div>
-              <div className="w-full flex justify-end mb-4">
-                <Button
-                  text="Continue"
-                  color="gray"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setSection(3);
-                  }}
-                />
-              </div>
-            </>
-          }
-        />
-        <CheckoutSection
-          className="mb-24"
-          onPress={handleActivateSection}
-          step="3"
-          title="Payment"
-          description="Please select a payment method."
-          isOpen={section == 3}
-          content={
-            <>
-              <div className="w-full flex flex-col xs:flex-row gap-2 items-start xs:items-end mb-4">
-                <Input placeholder="Card Number" />
-              </div>
-              <div className="w-full flex flex-col xs:flex-row gap-2 items-start xs:items-end mb-4">
-                <Input placeholder="Card Holder Name" />
-              </div>
-              <div className="w-full flex flex-col xs:flex-row gap-2 items-start xs:items-end mb-4">
-                <Input placeholder="Date" />
-                <Input placeholder="CVV" />
-              </div>
-              <div className="w-full flex justify-end mb-4">
-                <Button
-                  text="Complete Shopping"
-                  color="blue"
-                  loading={checkoutLoading}
-                  onClick={handleCreatePayment}
-                />
-              </div>
-            </>
-          }
-        />
+          </CheckoutSection>
+        </div>
       </div>
     </Page>
   );
