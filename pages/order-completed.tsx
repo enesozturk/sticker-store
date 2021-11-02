@@ -8,7 +8,7 @@ function OrderCompleted() {
 
   return (
     <Page title="Order Completed">
-      <div className="flex flex-col items-center w-full bg-gray-100 p-8 rounded-xl">
+      <div className="flex flex-col items-center w-full bg-gray-100 p-8 rounded-xl mb-64">
         <h1 className="text-8xl font-semibold	text-center pt-8">🎉</h1>
         <h1 className="text-4xl font-semibold	text-center pt-8">
           Your order completed.
