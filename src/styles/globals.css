@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+
+  .checkout-input-contianer {
+    @apply w-full flex flex-col xs:flex-row gap-2 items-start xs:items-end;
+  }
+
+  .checkout-default-row {
+    @apply checkout-input-contianer mb-4;
+  }
+
+  .checkout-email-row {
+    @apply checkout-input-contianer sm:w-2/3;
+  }
+}
