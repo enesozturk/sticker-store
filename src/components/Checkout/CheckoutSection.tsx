@@ -1,46 +1,40 @@
 type CheckoutSectionProps = {
-  step: string;
   title: string;
-  description: string;
-  isOpen?: boolean;
-  content?: React.ReactNode;
-  onPress?: (arg: number) => void;
+  description?: string;
+  children?: React.ReactNode;
+  seperator?: boolean;
   className?: string;
 };
 
 const CheckoutSection = ({
-  step,
   title,
-  description,
-  isOpen = false,
-  content,
-  onPress,
+  children,
+  seperator,
   className,
 }: CheckoutSectionProps) => {
-  const index = parseInt(step);
-
   return (
-    <button
-      className={`bg-white rounded-2xl flex flex-row px-6 py-4 w-full border border-gray-1 mb-2 focus:outline-none ${className}`}
-      onClick={() => {
-        onPress(index);
-      }}
-    >
-      <div className="w-full flex items-start">
-        <span className="bg-gray-100 text-gray-400 rounded-full w-12 h-12 flex justify-center items-center text-center mr-4 font-semibold">
-          {step}
-        </span>
-        <div className="flex flex-col items-start justify-start w-full">
-          <span className="text-xl font-semibold w-full text-left leading-10">
-            {title}
-          </span>
-          <p className="text-gray-400  mb-4">{description}</p>
-
-          {isOpen && content}
+    <>
+      <div
+        className={`flex flex-row w-full mb-2 focus:outline-none ${className}`}
+      >
+        <div className="w-full flex items-start">
+          <div className="flex flex-col items-start justify-start w-full">
+            <span className="text-xl font-semibold w-full text-left leading-10 mb-2">
+              {title}
+            </span>
+            {children}
+          </div>
         </div>
       </div>
-    </button>
+      {seperator ? <div className="border-t border-gray-1 mx-2 my-6" /> : null}
+    </>
   );
 };
+
+CheckoutSection.Content = ({ children }) => (
+  <div className="w-full flex flex-col xs:flex-row gap-2 items-start xs:items-end mb-4">
+    {children}
+  </div>
+);
 
 export default CheckoutSection;
