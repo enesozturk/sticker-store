@@ -1,39 +1,25 @@
 import { useState } from "react";
 
-import { useRouter } from "next/router";
-
 import { Button } from "../src/components/Button";
 import { CheckoutSection } from "../src/components/Checkout";
 import { PageHeader } from "../src/components/Header";
 import Input from "../src/components/Input";
 import Page from "../src/components/Page";
-import {
-  useAirtable,
-  useCraftgate,
-  useShoppingCardContext,
-  useShoppingCart,
-} from "../src/hooks";
+import { useCheckout, useShoppingCart } from "../src/hooks";
+import { useForm } from "react-hook-form";
 
 function Checkout({}) {
-  const [checkoutLoading, setCheckoutLoading] = useState(false);
-  const { productTotal, getCartItemsForOrder } = useShoppingCart();
-  const { resetCart } = useShoppingCardContext();
-  const { createPayment } = useCraftgate();
-  const { createRecord } = useAirtable();
-  const router = useRouter();
+  const [checkoutLoading] = useState(false);
+  const { productTotal } = useShoppingCart();
+  const { handleCreatePayment } = useCheckout();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const handleCreatePayment = () => {
-    setCheckoutLoading(true);
-    createPayment(getCartItemsForOrder()).then((response) => {
-      if (response.ok) {
-        createRecord("Order", [{ fields: { total_price: productTotal } }]).then(
-          () => {
-            resetCart();
-            router.replace("/order-completed");
-          }
-        );
-      }
-    });
+  const submitForm = (data) => {
+    console.log(data);
   };
 
   return (
@@ -45,43 +31,104 @@ function Checkout({}) {
           leftTitle={`${productTotal}₺`}
           leftDescription="TOTAL"
         />
-        <div className="bg-gray-50 rounded-xl p-8 mb-16">
+        <form
+          onSubmit={handleSubmit(submitForm)}
+          className="bg-gray-50 rounded-xl p-8 mb-16"
+        >
           <CheckoutSection title="Contact Information" seperator>
             <div className="checkout-email-row">
-              <Input title="E-mail" name="email" type="email" />
+              <Input
+                title="E-mail"
+                type="email"
+                error={errors.email}
+                {...register("email", { required: true })}
+              />
             </div>
           </CheckoutSection>
           <CheckoutSection title="Shipping Information" seperator>
             <div className="checkout-default-row">
-              <Input title="First Name" name="firstName" />
-              <Input title="Last Name" name="lastName" />
+              <Input
+                title="First Name"
+                error={errors.firstName}
+                {...register("firstName", { required: true })}
+              />
+              <Input
+                title="Last Name"
+                error={errors.lastName}
+                {...register("lastName", { required: true })}
+              />
             </div>
             <div className="checkout-default-row">
-              <Input title="Phone Number" name="phoneNumber" type="phone" />
-              <Input title="Company" name="company" />
+              <Input
+                title="Phone Number"
+                type="phone"
+                error={errors.phoneNumber}
+                {...register("phoneNumber", { required: true })}
+              />
+              <Input
+                title="Company"
+                error={errors.company}
+                {...register("company", { required: false })}
+              />
             </div>
             <div className="checkout-default-row">
-              <Input title="Address" name="address" />
+              <Input
+                title="Address"
+                error={errors.address}
+                {...register("address", { required: true })}
+              />
             </div>
             <div className="checkout-default-row">
-              <Input title="City" name="city" />
-              <Input title="Country" name="country" />
+              <Input title="City" {...register("city", { required: true })} />
+              <Input
+                title="Country"
+                error={errors.country}
+                {...register("country", { required: false })}
+              />
             </div>
             <div className="checkout-default-row">
-              <Input title="State / Province" />
-              <Input title="Postal Code" type="number" />
+              <Input
+                title="State / Province"
+                error={errors.state}
+                {...register("state", { required: false })}
+              />
+              <Input
+                title="Postal Code"
+                type="number"
+                error={errors.postalCode}
+                {...register("postalCode", { required: false })}
+              />
             </div>
           </CheckoutSection>
           <CheckoutSection className="mb-24" title="Payment">
             <div className="checkout-default-row">
-              <Input title="Card Number" type="number" />
+              <Input
+                title="Card Number"
+                type="number"
+                error={errors.cardNnumber}
+                {...register("cardNnumber", { required: false })}
+              />
             </div>
             <div className="checkout-default-row">
-              <Input title="Card Holder Name" />
+              <Input
+                title="Card Holder Name"
+                error={errors.cardHolderName}
+                {...register("cardHolderName", { required: false })}
+              />
             </div>
             <div className="checkout-default-row">
-              <Input title="Expiration Date (MM/YY)" type="number" />
-              <Input title="CVV" type="number" />
+              <Input
+                title="Expiration Date (MM/YY)"
+                type="number"
+                error={errors.expirationDate}
+                {...register("expirationDate", { required: false })}
+              />
+              <Input
+                title="CVV"
+                type="number"
+                error={errors.cvvNumber}
+                {...register("cvvNumber", { required: false })}
+              />
             </div>
             <div className="w-full flex justify-end">
               <Button
@@ -89,11 +136,11 @@ function Checkout({}) {
                 color="blue"
                 className="w-full text-center mt-4"
                 loading={checkoutLoading}
-                onClick={handleCreatePayment}
+                type="submit"
               />
             </div>
           </CheckoutSection>
-        </div>
+        </form>
       </div>
     </Page>
   );
