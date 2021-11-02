@@ -36,7 +36,7 @@ function Checkout({}) {
           className="bg-gray-50 rounded-xl p-8 mb-16"
         >
           <CheckoutSection title="Contact Information" seperator>
-            <div className="checkout-email-row">
+            <div className="checkout-input-contianer sm:w-2/4">
               <Input
                 title="E-mail"
                 type="email"
@@ -46,7 +46,7 @@ function Checkout({}) {
             </div>
           </CheckoutSection>
           <CheckoutSection title="Shipping Information" seperator>
-            <div className="checkout-default-row">
+            <div className="checkout-input-contianer">
               <Input
                 title="First Name"
                 error={errors.firstName}
@@ -58,7 +58,7 @@ function Checkout({}) {
                 {...register("lastName", { required: true })}
               />
             </div>
-            <div className="checkout-default-row">
+            <div className="checkout-input-contianer">
               <Input
                 title="Phone Number"
                 type="phone"
@@ -71,14 +71,14 @@ function Checkout({}) {
                 {...register("company", { required: false })}
               />
             </div>
-            <div className="checkout-default-row">
+            <div className="checkout-input-contianer">
               <Input
                 title="Address"
                 error={errors.address}
                 {...register("address", { required: true })}
               />
             </div>
-            <div className="checkout-default-row">
+            <div className="checkout-input-contianer">
               <Input title="City" {...register("city", { required: true })} />
               <Input
                 title="Country"
@@ -86,7 +86,7 @@ function Checkout({}) {
                 {...register("country", { required: false })}
               />
             </div>
-            <div className="checkout-default-row">
+            <div className="checkout-input-contianer">
               <Input
                 title="State / Province"
                 error={errors.state}
@@ -101,7 +101,7 @@ function Checkout({}) {
             </div>
           </CheckoutSection>
           <CheckoutSection className="mb-24" title="Payment">
-            <div className="checkout-default-row">
+            <div className="checkout-input-contianer sm:w-2/4">
               <Input
                 data-mask="(999)-999-9999"
                 title="Card Number"
@@ -115,14 +115,14 @@ function Checkout({}) {
                 })}
               />
             </div>
-            <div className="checkout-default-row">
+            <div className="checkout-input-contianer sm:w-2/4">
               <Input
                 title="Card Holder Name"
                 error={errors.cardHolderName}
                 {...register("cardHolderName", { required: true })}
               />
             </div>
-            <div className="checkout-default-row">
+            <div className="checkout-input-contianer sm:w-2/4">
               <Input
                 title="Expiration Date (MM/YY)"
                 error={errors.expirationDate}

@@ -14,14 +14,6 @@
   }
 
   .checkout-input-contianer {
-    @apply w-full flex flex-col xs:flex-row gap-2 items-start xs:items-end;
-  }
-
-  .checkout-default-row {
-    @apply checkout-input-contianer mb-4;
-  }
-
-  .checkout-email-row {
-    @apply checkout-input-contianer sm:w-2/3;
+    @apply w-full flex flex-col xs:flex-row gap-2 items-start xs:items-end mb-4;
   }
 }
