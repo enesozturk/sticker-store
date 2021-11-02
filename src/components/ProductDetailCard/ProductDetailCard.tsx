@@ -11,7 +11,7 @@ const ProductCard = ({ item }) => {
   };
 
   return (
-    <div className="rounded-2xl bg-white flex flex-col sm:flex-row w-full shadow overflow-hidden w-full  mb-4">
+    <div className="rounded-2xl bg-white flex flex-col sm:flex-row w-full shadow overflow-hidden w-full mb-64">
       <div className="flex-1 p-8 flex justify-center items-center">
         <Image src={item.image} size={200} className="h-48" />
       </div>

@@ -21,7 +21,7 @@ function Cart() {
 
   return (
     <Page title="Cart">
-      <div className="flex flex-col w-full">
+      <div className="flex flex-col w-full mb-64">
         <PageHeader rightTitle="My Cart" rightSubtitle="2 products" />
         <div className="grid grid-cols-3 w-full mt-8 gap-2">
           <div className="col-start-1 col-end-4 sm:col-end-3">
