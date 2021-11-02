@@ -5,7 +5,7 @@ const Button = ({ className = "", text, loading = false, ...props }) => {
     <button
       {...props}
       onClick={loading ? null : props.onClick}
-      className={`flex flex-row items-center py-2 px-4 transition bg-blue-100 focus:outline-none ${
+      className={`flex flex-row items-center justify-center py-2 px-4 transition bg-blue-100 focus:outline-none ${
         loading
           ? "cursor-default text-blue-300"
           : "text-blue-400 focus:ring focus:border-blue-100 cursor-pointer hover:bg-blue-200"
