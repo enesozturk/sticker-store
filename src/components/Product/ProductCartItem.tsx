@@ -23,6 +23,8 @@ const ProductCartItem = ({ item }: ProductCartItemProps) => {
     removeProductFromCart(item, true);
   };
 
+  const totalPrice = item.quantity * item.price;
+
   return (
     <div className="rounded-2xl bg-white flex flex-col xs:flex-row w-full shadow overflow-hidden w-full mb-4">
       <div className="flex flex-row xs:flex-col sm:flex-row flex-1">
@@ -31,7 +33,7 @@ const ProductCartItem = ({ item }: ProductCartItemProps) => {
         </div>
         <div className="flex-1 flex flex-col items-start p-4">
           <span className="text-xl font-semibold mb-2">{item.title}</span>
-          <span className="text-xl text-gray-400 mb-2">{`${item.price}₺`}</span>
+          <span className="text-xl text-gray-400 mb-2">{`${totalPrice}₺`}</span>
         </div>
       </div>
       <div className="flex flex-row xs:flex-col items-center xs:items-end justify-between xs:justify-center p-4">
