@@ -1,0 +1,65 @@
+{
+  "cart": {
+    "empty": {
+      "title": "Your cart is empty",
+      "description": "Please add some products to your cart to proceed to checkout.",
+      "button": "Go back to home"
+    },
+    "header": {
+      "title": "My Cart",
+      "products": "products(s)"
+    },
+    "checkout_summary": {
+      "total": "Total",
+      "sub_total": "Subtotal",
+      "shipping": "Shipping",
+      "taxes": "Taxes",
+      "proceed_to_checkout": "Proceed to Checkout"
+    }
+  },
+  "checkout": {
+    "header": {
+      "title": "Checkout",
+      "description": "Complete your order with cridentials.",
+      "total": "Total"
+    },
+    "form": {
+      "contact": {
+        "title": "Contact Information",
+        "fields": {
+          "email": "E-mail"
+        }
+      },
+      "shipping": {
+        "title": "Shipping",
+        "fields": {
+          "first_name": "First Name",
+          "last_name": "Last Name",
+          "phone_number": "Phone Number",
+          "company": "Company",
+          "address": "Address",
+          "city": "City",
+          "state": "State",
+          "zip": "Zip",
+          "country": "Country",
+          "postal_code": "Postal Code"
+        }
+      },
+      "payment": {
+        "title": "Payment",
+        "fields": {
+          "card_number": "Card Number",
+          "expiration_date": "Expiration Date",
+          "cvv": "CVV",
+          "card_holder_name": "Name on Card"
+        }
+      }
+    },
+    "button": "Complete Shopping"
+  },
+  "product": {
+    "details": {
+      "add_to_cart": "Add to cart"
+    }
+  }
+}

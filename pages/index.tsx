@@ -1,3 +1,5 @@
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+
 import Page from "../src/components/Page";
 
 import { ProductCard } from "../src/components/Product";
@@ -25,8 +27,14 @@ export default function Home({ ...props }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getStaticProps({ locale }) {
   const products = await getRecords("Product");
 
-  return { props: { products }, revalidate: 3600 };
+  return {
+    props: {
+      products,
+      ...(await serverSideTranslations(locale, ["common"])),
+    },
+    revalidate: 3600,
+  };
 }

@@ -1,3 +1,6 @@
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "react-i18next";
+
 import { CardEmpty } from "../src/components/Cart";
 import { PageHeader } from "../src/components/Header";
 import { ProductCartItem } from "../src/components/Product";
@@ -6,6 +9,7 @@ import { useShoppingCardContext } from "../src/hooks/useShoppingCardContext";
 import Page from "../src/components/Page";
 
 function Cart() {
+  const { t: translate } = useTranslation();
   const {
     shoppingCart: { products },
   } = useShoppingCardContext();
@@ -22,7 +26,12 @@ function Cart() {
   return (
     <Page title="Cart">
       <div className="flex flex-col w-full mb-64">
-        <PageHeader rightTitle="My Cart" rightSubtitle="2 products" />
+        <PageHeader
+          rightTitle={translate("cart.header.title")}
+          rightSubtitle={`${products.length} ${translate(
+            "cart.header.products"
+          )}`}
+        />
         <div className="grid grid-cols-3 w-full mt-8 gap-2">
           <div className="col-start-1 col-end-4 sm:col-end-3">
             {products.map((_product, index) => (
@@ -39,3 +48,11 @@ function Cart() {
 }
 
 export default Cart;
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["common"])),
+    },
+  };
+}

@@ -1,6 +1,7 @@
 import "../src/styles/globals.css";
 
 import App from "next/app";
+import { appWithTranslation } from "next-i18next";
 
 import { Header } from "../src/components/Header";
 import Footer from "../src/components/Footer";
@@ -28,4 +29,4 @@ MyApp.getInitialProps = async (ctx) => {
   };
 };
 
-export default MyApp;
+export default appWithTranslation(MyApp);

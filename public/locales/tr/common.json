@@ -1,0 +1,64 @@
+{
+  "cart": {
+    "empty": {
+      "title": "Sepetiniz boş",
+      "description": "Satın almak için sepetinize bir şeyler eklemelisiniz.",
+      "button": "Ana sayfaya dön"
+    },
+    "header": {
+      "title": "Sepetim",
+      "products": "ürün"
+    },
+    "checkout_summary": {
+      "total": "Toplam",
+      "subtotal": "Ara Toplam",
+      "shipping": "Kargo",
+      "taxes": "Vergiler",
+      "proceed_to_checkout": "Satın Al"
+    }
+  },
+  "checkout": {
+    "header": {
+      "title": "Satın Al",
+      "description": "Satın almaya devam etmek için bilgilerinizi girin.",
+      "total": "Toplam"
+    },
+    "form": {
+      "contact": {
+        "title": "İletişim Bilgileri",
+        "fields": {
+          "email": "E-posta"
+        }
+      },
+      "shipping": {
+        "title": "Kargo",
+        "fields": {
+          "first_name": "İsim",
+          "last_name": "Soyisim",
+          "phone_number": "Telefon Numarası",
+          "company": "Şirket",
+          "address": "Adres",
+          "city": "Şehir",
+          "country": "Ülte",
+          "state": "İlçe",
+          "postal_code": "Posta Kodu"
+        }
+      },
+      "payment": {
+        "title": "Ödeme",
+        "fields": {
+          "card_number": "Kart Numarası",
+          "expiration_date": "Son Tarihi",
+          "cvv": "CVV",
+          "card_holder_name": "Kart Sahibi"
+        }
+      }
+    },
+    "button": "Siparişi Tamamla"
+  },
+  "product": {
+    "details": {
+      "add_to_cart": "Sepete Ekle"
+    }
+  }
+}
