@@ -1,9 +1,12 @@
+import { useTranslation } from "next-i18next";
+
 import HeartIcon from "../Icon/HeartIcon";
 import { Button, IconButton, TypeButton } from "../Button";
 import { useShoppingCardContext } from "../../hooks/useShoppingCardContext";
 import Image from "../Image";
 
 const ProductCard = ({ item }) => {
+  const { t: translate } = useTranslation();
   const { addProductToCart } = useShoppingCardContext();
 
   const handleAddProductToCart = () => {
@@ -29,7 +32,10 @@ const ProductCard = ({ item }) => {
           <TypeButton text="Bold" isActive />
         </div>
         <div className="flex gap-2">
-          <Button onClick={handleAddProductToCart} text="Add to Cart" />
+          <Button
+            onClick={handleAddProductToCart}
+            text={translate("product.details.add_to_cart")}
+          />
           <IconButton icon={<HeartIcon />} />
         </div>
       </div>
