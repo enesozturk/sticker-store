@@ -22,8 +22,14 @@ export const useCheckout = () => {
     return `${firstName} ${lastName}, ${address}, Postal Code: ${postalCode}, State: ${state},  ${city} / ${country}`;
   };
 
-  const handleCreatePayment = (formData) => {
-    createPayment(getCartItemsForOrder()).then((response) => {
+  const handleCreatePayment = ({ formData, onSuccess, onError }) => {
+    createPayment(getCartItemsForOrder(), {
+      cardHolderName: formData.cardHolderName,
+      cardNumber: formData.cardNumber,
+      expireYear: `20${formData.expireDate.split("/")[1]}`,
+      expireMonth: formData.expireDate.split("/")[0],
+      cvc: formData.cvc,
+    }).then(async (response) => {
       if (response.ok) {
         createRecord("Order", [
           {
@@ -32,14 +38,17 @@ export const useCheckout = () => {
               first_name: formData.firstName,
               last_name: formData.lastName,
               email: formData.email,
-              phone: formData.phone,
+              phone: formData.phoneNumber,
               address: generateAddressString(formData),
             },
           },
         ]).then(() => {
           resetCart();
           router.replace("/order-completed");
+          onSuccess();
         });
+      } else {
+        onError();
       }
     });
   };

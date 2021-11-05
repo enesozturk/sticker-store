@@ -1,18 +1,17 @@
-import { useState } from "react";
-
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "react-i18next";
+import { useForm } from "react-hook-form";
 
 import { Button } from "../src/components/Button";
 import { CheckoutSection } from "../src/components/Checkout";
 import { PageHeader } from "../src/components/Header";
 import Input from "../src/components/Input";
 import Page from "../src/components/Page";
-import { useCheckout, useShoppingCart } from "../src/hooks";
-import { useForm } from "react-hook-form";
+import { useCheckout, useShoppingCart, usePaymentState } from "../src/hooks";
 
 function Checkout({}) {
-  const [checkoutLoading] = useState(false);
+  const [paymentState, dispatch] = usePaymentState();
+
   const { t: translate } = useTranslation();
   const { productTotal } = useShoppingCart();
   const { handleCreatePayment } = useCheckout();
@@ -23,7 +22,18 @@ function Checkout({}) {
   } = useForm();
 
   const submitForm = (data) => {
-    handleCreatePayment(data);
+    dispatch({ type: "payment_loading" });
+    if (!paymentState.paymentLoading) {
+      handleCreatePayment({
+        formData: data,
+        onSuccess: () => {
+          dispatch({ type: "payment_success" });
+        },
+        onError: () => {
+          dispatch({ type: "payment_error" });
+        },
+      });
+    }
   };
 
   return (
@@ -119,15 +129,10 @@ function Checkout({}) {
           >
             <div className="checkout-input-contianer sm:w-2/4">
               <Input
-                data-mask="(999)-999-9999"
                 title={translate("checkout.form.payment.fields.card_number")}
-                error={errors.cardNnumber}
+                error={errors.cardNumber}
                 {...register("cardNumber", {
                   required: true,
-                  pattern: {
-                    value: /^\d{4}-\d{4}-\d{4}-\d{4}$/,
-                    message: "Invalid card number",
-                  },
                 })}
               />
             </div>
@@ -145,22 +150,25 @@ function Checkout({}) {
                 title={translate(
                   "checkout.form.payment.fields.expiration_date"
                 )}
-                error={errors.expirationDate}
+                error={errors.expireDate}
                 {...register("expireDate", { required: true })}
               />
               <Input
                 title={translate("checkout.form.payment.fields.cvv")}
                 type="number"
-                error={errors.cvvNumber}
+                error={errors.cvc}
                 {...register("cvc", { required: true, maxLength: 3 })}
               />
             </div>
+            {paymentState.paymentError && (
+              <span className="text-red-600">Ödemede hata oldu</span>
+            )}
             <div className="w-full flex justify-end">
               <Button
                 text={translate("checkout.button")}
                 color="blue"
                 className="w-full text-center mt-4"
-                loading={checkoutLoading}
+                loading={paymentState.paymentLoading}
                 type="submit"
               />
             </div>
