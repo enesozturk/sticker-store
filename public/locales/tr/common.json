@@ -49,7 +49,7 @@
         "fields": {
           "card_number": "Kart Numarası",
           "expiration_date": "Son Tarihi",
-          "cvv": "CVV",
+          "cvc": "CVC",
           "card_holder_name": "Kart Sahibi"
         }
       }

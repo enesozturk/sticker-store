@@ -50,7 +50,7 @@
         "fields": {
           "card_number": "Card Number",
           "expiration_date": "Expiration Date",
-          "cvv": "CVV",
+          "cvc": "CVC",
           "card_holder_name": "Name on Card"
         }
       }
