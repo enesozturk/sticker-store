@@ -8,6 +8,11 @@ import { PageHeader } from "../src/components/Header";
 import Input from "../src/components/Input";
 import Page from "../src/components/Page";
 import { useCheckout, useShoppingCart, usePaymentState } from "../src/hooks";
+import {
+  maskCardNumber,
+  maskExpireDateNumber,
+  maskCVCNumber,
+} from "../src/utils/mask";
 
 function Checkout({}) {
   const [paymentState, dispatch] = usePaymentState();
@@ -26,9 +31,7 @@ function Checkout({}) {
     if (!paymentState.paymentLoading) {
       handleCreatePayment({
         formData: data,
-        onSuccess: () => {
-          dispatch({ type: "payment_success" });
-        },
+        onSuccess: () => {},
         onError: () => {
           dispatch({ type: "payment_error" });
         },
@@ -129,11 +132,19 @@ function Checkout({}) {
           >
             <div className="checkout-input-contianer sm:w-2/4">
               <Input
-                title={translate("checkout.form.payment.fields.card_number")}
+                {...register("cardNumber", { required: true })}
+                autoComplete="cc-number"
                 error={errors.cardNumber}
-                {...register("cardNumber", {
-                  required: true,
-                })}
+                id="cardNumber"
+                inputMode="numeric"
+                name="cardNumber"
+                onChange={(event) => {
+                  const { value } = event.target;
+                  event.target.value = maskCardNumber(value);
+                }}
+                placeholder="0000 0000 0000 0000"
+                title={translate("checkout.form.payment.fields.card_number")}
+                type="tel"
               />
             </div>
             <div className="checkout-input-contianer sm:w-2/4">
@@ -147,17 +158,35 @@ function Checkout({}) {
             </div>
             <div className="checkout-input-contianer sm:w-2/4">
               <Input
+                {...register("expireDate", { required: true })}
+                autoComplete="expire-date-number"
+                error={errors.expireDate}
+                id="expireDate"
+                inputMode="numeric"
+                name="expireDate"
+                onChange={(event) => {
+                  const { value } = event.target;
+                  event.target.value = maskExpireDateNumber(value);
+                }}
+                placeholder="00 / 00"
                 title={translate(
                   "checkout.form.payment.fields.expiration_date"
                 )}
-                error={errors.expireDate}
-                {...register("expireDate", { required: true })}
+                type="tel"
               />
               <Input
-                title={translate("checkout.form.payment.fields.cvv")}
-                type="number"
+                {...register("cvc", { required: true })}
+                autoComplete="expire-date-number"
                 error={errors.cvc}
-                {...register("cvc", { required: true, maxLength: 3 })}
+                id="cvc"
+                inputMode="numeric"
+                name="cvc"
+                onChange={(event) => {
+                  const { value } = event.target;
+                  event.target.value = maskCVCNumber(value);
+                }}
+                placeholder="000"
+                title={translate("checkout.form.payment.fields.cvc")}
               />
             </div>
             {paymentState.paymentError && (
