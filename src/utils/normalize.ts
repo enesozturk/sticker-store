@@ -1,20 +1,45 @@
-export const normalizeCardData = (data) => {
+type CheckoutForm = {
+  email: string;
+  phoneNumber: string;
+  firstName: string;
+  lastName: string;
+  address: string;
+  city: string;
+  state: string;
+  zip: string;
+  country: string;
+  postalCode: number;
+  cardHolderName: string;
+  cardNumber: string;
+  expireDate: string;
+  cvc: string;
+};
+
+type OrderRecordProps = {
+  data: CheckoutForm;
+  totalPrice: number;
+};
+
+export const normalizeCardData = (formData: CheckoutForm) => {
   return {
-    cardHolderName: data.cardHolderName,
-    cardNumber: data.cardNumber.replace(/(\s)+/g, ""),
-    expireYear: `20${data.expireDate.replace(/(\s)+/g, "").split("/")[1]}`,
-    expireMonth: data.expireDate.replace(/(\s)+/g, "").split("/")[0],
-    cvc: data.cvc,
+    cardHolderName: formData.cardHolderName,
+    cardNumber: formData.cardNumber.replace(/(\s)+/g, ""),
+    expireYear: `20${formData.expireDate.replace(/(\s)+/g, "").split("/")[1]}`,
+    expireMonth: formData.expireDate.replace(/(\s)+/g, "").split("/")[0],
+    cvc: formData.cvc,
   };
 };
 
-export const normalizeAddressString = (_formData) => {
+export const normalizeAddressString = (formData: CheckoutForm) => {
   const { firstName, lastName, address, city, country, state, postalCode } =
-    _formData;
+    formData;
   return `${firstName} ${lastName}, ${address}, Postal Code: ${postalCode}, State: ${state},  ${city} / ${country}`;
 };
 
-export const normalizeOrderRecord = ({ data, totalPrice }) => {
+export const normalizeOrderRecord = ({
+  data,
+  totalPrice,
+}: OrderRecordProps) => {
   return {
     fields: {
       total_price: totalPrice,

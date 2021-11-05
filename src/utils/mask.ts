@@ -1,4 +1,4 @@
-export const maskCardNumber = (value) => {
+export const maskCardNumber = (value: string) => {
   const replacedValue = value ? value.replace(/[^0-9]/g, "") : "";
   return replacedValue
     ? replacedValue
@@ -8,7 +8,7 @@ export const maskCardNumber = (value) => {
     : "";
 };
 
-export const maskExpireDateNumber = (value) => {
+export const maskExpireDateNumber = (value: string) => {
   const replacedValue = value ? value.replace(/[^0-9]/g, "") : "";
   return replacedValue
     ? replacedValue
@@ -18,7 +18,7 @@ export const maskExpireDateNumber = (value) => {
     : "";
 };
 
-export const maskCVCNumber = (value) => {
+export const maskCVCNumber = (value: string) => {
   const replacedValue = value ? value.replace(/[^0-9]/g, "") : "";
   return replacedValue ? replacedValue.substr(0, 3) : "";
 };
