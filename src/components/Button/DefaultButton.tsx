@@ -4,7 +4,8 @@ const Button = ({ className = "", text, loading = false, ...props }) => {
   return (
     <button
       {...props}
-      onClick={loading ? null : props.onClick}
+      disabled={loading}
+      onClick={props.onClick}
       className={`flex flex-row items-center justify-center py-2 px-4 transition bg-blue-100 focus:outline-none ${
         loading
           ? "cursor-default text-blue-300"
