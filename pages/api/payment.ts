@@ -12,17 +12,10 @@ const paymentDetails = {
   conversationId: "456d1297-908e-4bd6-a13b-4be31a6e47d5",
   currency: Craftgate.Model.Currency.TRY,
   paymentGroup: Craftgate.Model.PaymentGroup.ListingOrSubscription,
-  card: {
-    cardHolderName: "Haluk Demir",
-    cardNumber: "4132260000000003",
-    expireYear: "2044",
-    expireMonth: "07",
-    cvc: "000",
-  },
 };
 
 export default (req, res) => {
-  const { items } = JSON.parse(req.body);
+  const { items, card } = JSON.parse(req.body);
 
   const totalPrice = items.reduce((acc, item) => acc + item.price, 0);
 
@@ -33,11 +26,12 @@ export default (req, res) => {
       price: totalPrice,
       paidPrice: totalPrice,
       items,
+      card,
     })
     .then(function (result) {
-      res.status(200).json(result);
+      res.send(result);
     })
     .catch(function (err) {
-      res.send(err);
+      res.status(400).send(err);
     });
 };

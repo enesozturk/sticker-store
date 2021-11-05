@@ -1,8 +1,8 @@
 export const useCraftgate = () => {
-  const createPayment = (items) => {
+  const createPayment = (items, card) => {
     return fetch("/api/payment", {
       method: "POST",
-      body: JSON.stringify({ items }),
+      body: JSON.stringify({ items, card }),
     });
   };
 
