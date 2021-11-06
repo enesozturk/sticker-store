@@ -190,7 +190,9 @@ function Checkout({}) {
               />
             </div>
             {paymentState.paymentError && (
-              <span className="text-red-600">Ödemede hata oldu</span>
+              <span className="text-red-600">
+                {translate("payment.errors.common")}
+              </span>
             )}
             <div className="w-full flex justify-end">
               <Button

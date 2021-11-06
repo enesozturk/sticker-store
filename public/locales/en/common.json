@@ -57,6 +57,11 @@
     },
     "button": "Complete Shopping"
   },
+  "payment": {
+    "errors": {
+      "common": "An error occured in payment."
+    }
+  },
   "product": {
     "details": {
       "add_to_cart": "Add to cart"

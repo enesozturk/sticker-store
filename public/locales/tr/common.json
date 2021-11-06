@@ -56,6 +56,11 @@
     },
     "button": "Siparişi Tamamla"
   },
+  "payment": {
+    "errors": {
+      "common": "Ödemede bir hata oluştu."
+    }
+  },
   "product": {
     "details": {
       "add_to_cart": "Sepete Ekle"
