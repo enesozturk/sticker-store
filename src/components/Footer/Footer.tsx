@@ -3,8 +3,9 @@ import React from "react";
 import Link from "next/link";
 
 import Image from "../Image";
-import { IconButton } from "../Button";
-import { PlusIcon } from "../Icon";
+// import { IconButton } from "../Button";
+// import { PlusIcon } from "../Icon";
+// import { useRouter } from "next/router";
 
 function Footer() {
   return (
@@ -27,22 +28,22 @@ function Footer() {
             <Link href={"/"}>
               <a className="mb-2 text-gray-500 hover:text-gray-600">Home</a>
             </Link>
-            <Link href={"/about"}>
+            <Link href={"#"}>
               <a className="mb-2 text-gray-500 hover:text-gray-600">About</a>
             </Link>
-            <Link href={"/faq"}>
+            <Link href={"#"}>
               <a className="mb-2 text-gray-500 hover:text-gray-600">FAQ</a>
             </Link>
           </div>
         </div>
         <div className="flex-1 flex justify-end mb-4">
           <div className="flex flex-col items-start">
-            <Link href={"/terms-of-use"}>
+            <Link href={"#"}>
               <a className="mb-2 text-gray-500 hover:text-gray-600">
                 Terms of Use
               </a>
             </Link>
-            <Link href={"/privacy-policy"}>
+            <Link href={"#"}>
               <a className="mb-2 text-gray-500 hover:text-gray-600">
                 Privacy Policy
               </a>
@@ -50,7 +51,15 @@ function Footer() {
           </div>
         </div>
         <div className="flex-1 flex flex-col items-end mb-4">
-          <IconButton onClick={() => {}} icon={<span>TR</span>} />
+          <a href="http://github.com/enesozturk/sticker-store" target="_blank">
+            <Image local src="/github-logo.png" size={32} />
+          </a>
+          {/* <IconButton
+            shallow
+            href={router.asPath}
+            locale={router.locale === "tr" ? "en" : "tr"}
+            icon={<span>{language}</span>}
+          /> */}
         </div>
       </div>
     </footer>
