@@ -26,10 +26,10 @@ const ProductCard = ({ item }) => {
             ₺{item.price}
           </span>
         </div>
-        <span className="font-semibold text-gray-400 mb-1">Type</span>
+        <span className="font-medium text-gray-400 mb-1">Type</span>
         <div className="flex gap-1 mb-4">
-          <TypeButton text="Standart" />
-          <TypeButton text="Bold" isActive />
+          <TypeButton text="Normal" description="Standart material" />
+          <TypeButton text="Bold" description="Double protection" isActive />
         </div>
         <div className="flex gap-2">
           <Button
