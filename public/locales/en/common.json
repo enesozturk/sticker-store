@@ -11,7 +11,7 @@
     },
     "checkout_summary": {
       "total": "Total",
-      "sub_total": "Subtotal",
+      "subtotal": "Subtotal",
       "shipping": "Shipping",
       "taxes": "Taxes",
       "proceed_to_checkout": "Proceed to Checkout"
