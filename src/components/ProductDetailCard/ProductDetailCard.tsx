@@ -9,7 +9,7 @@ import { useLikes } from "../../hooks";
 const ProductCard = ({ item, likeCount = 0 }) => {
   const { t: translate } = useTranslation();
   const { addProductToCart } = useShoppingCardContext();
-  // const { liked, handleLikeProduct } = useLikes({ productId: item.id });
+  const { liked, handleLikeProduct } = useLikes({ productId: item.id });
 
   const handleAddProductToCart = () => {
     addProductToCart(item);
@@ -38,7 +38,7 @@ const ProductCard = ({ item, likeCount = 0 }) => {
             onClick={handleAddProductToCart}
             text={translate("product.details.add_to_cart")}
           />
-          {/* <IconButton
+          <IconButton
             icon={
               <HeartIcon
                 className={`${liked ? "fill-red" : "fill-current"} ${
@@ -47,7 +47,7 @@ const ProductCard = ({ item, likeCount = 0 }) => {
               />
             }
             onClick={handleLikeProduct}
-          /> */}
+          />
         </div>
       </div>
     </div>
