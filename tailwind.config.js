@@ -14,6 +14,13 @@ module.exports = {
       xl: "1280px",
       "2xl": "1536px",
     },
+    fill: (theme) => ({
+      red: theme("colors.red.500"),
+    }),
+    stroke: (theme) => ({
+      red: theme("colors.red.500"),
+      gray: theme("colors.gray.500"),
+    }),
   },
   variants: {
     extend: {
