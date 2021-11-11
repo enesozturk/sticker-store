@@ -15,8 +15,10 @@ export function writeStorage(key: string, data: StorageData) {
 }
 
 export function readStorage(key: string) {
-  const data = window.localStorage.getItem(key);
-  return JSON.parse(data);
+  try {
+    const data = window.localStorage.getItem(key);
+    return JSON.parse(data);
+  } catch (e) {}
 }
 
 export function updateShoppingCard(products: Product[]) {
