@@ -2,10 +2,6 @@ import { SHOPPING_CART_LIST } from "../constants/storageKeys";
 import type { Product } from "../types/product";
 import { ShoppingCartProps } from "../types/shoppingCart";
 
-export const storageKeys = {
-  ss_keys: "ss_keys",
-};
-
 type StorageData =
   | { shoppingCart: ShoppingCartProps }
   | Product

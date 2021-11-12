@@ -6,6 +6,11 @@ export const REMOVE_PRODUCT = "REMOVE_PRODUCT";
 export const RESET_CART = "RESET_CART";
 export const INITIALIZE_SHOPPING_CART = "INITIALIZE_SHOPPING_CART";
 
+const initializeCart = () => {
+  const shoppingCartFromStorage = readStorage(SHOPPING_CART_LIST);
+  return shoppingCartFromStorage || { shoppingCart: { products: [] } };
+};
+
 const addProductToCart = (product, state) => {
   let products = [...state.shoppingCart.products];
 
@@ -46,8 +51,7 @@ const removeProductFromCart = (product, removeAll, state) => {
 export const shoppingCartReducer = (state, action) => {
   switch (action.type) {
     case INITIALIZE_SHOPPING_CART:
-      const shoppingCartFromStorage = readStorage("shoppingCart");
-      return shoppingCartFromStorage || { shoppingCart: { products: [] } };
+      return initializeCart();
     case ADD_PRODUCT:
       return addProductToCart(action.product, state);
     case REMOVE_PRODUCT:

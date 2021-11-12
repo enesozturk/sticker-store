@@ -1,19 +1,20 @@
 import { useEffect, useState } from "react";
 
-import { readStorage, storageKeys, writeStorage } from "../utils/storage";
+import { readStorage, writeStorage } from "../utils/storage";
+import { LIKES } from "../constants/storageKeys";
 
 export const useLikes = ({ productId }) => {
   const [liked, setLiked] = useState(false);
 
   const isLiked = (productId: string) => {
-    const likes = readStorage(storageKeys.ss_keys);
+    const likes = readStorage(LIKES);
     return likes && likes.includes(productId);
   };
 
   const like = async (productId: string) => {
     if (!isLiked(productId)) {
-      const likes = readStorage(storageKeys.ss_keys) || [];
-      writeStorage(storageKeys.ss_keys, [...likes, productId]);
+      const likes = readStorage(LIKES) || [];
+      writeStorage(LIKES, [...likes, productId]);
     }
 
     return fetch("/api/likes", {
@@ -26,10 +27,8 @@ export const useLikes = ({ productId }) => {
 
   const unlike = async (productId: string) => {
     if (isLiked(productId)) {
-      const likes = readStorage(storageKeys.ss_keys) || [];
-      writeStorage(storageKeys.ss_keys, [
-        ...likes.filter((id) => id !== productId),
-      ]);
+      const likes = readStorage(LIKES) || [];
+      writeStorage(LIKES, [...likes.filter((id) => id !== productId)]);
     }
 
     return fetch("/api/likes", {
