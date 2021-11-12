@@ -56,6 +56,15 @@
     },
     "button": "Siparişi Tamamla"
   },
+  "footer": {
+    "links": {
+      "home": "Ana Sayfa",
+      "about": "Hakkında",
+      "faq": "SSS",
+      "terms_of_use": "Kullanım Koşulları",
+      "privacy_policy": "Gizlilik Sözleşmesi"
+    }
+  },
   "payment": {
     "errors": {
       "common": "Ödemede bir hata oluştu."

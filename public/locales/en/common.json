@@ -57,6 +57,15 @@
     },
     "button": "Complete Shopping"
   },
+  "footer": {
+    "links": {
+      "home": "Home",
+      "about": "About",
+      "faq": "FAQ",
+      "terms_of_use": "Terms of Use",
+      "privacy_policy": "Privacy Policy"
+    }
+  },
   "payment": {
     "errors": {
       "common": "An error occured in payment."
