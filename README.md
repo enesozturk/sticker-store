@@ -7,7 +7,8 @@ E-commerce site powered with Next JS. You can setup your site with a few configu
 - 🪄 [Next.js 12](https://nextjs.org/) by Vercel
 - 📄 [React Hook Form](https://github.com/react-hook-form/react-hook-form) for inputs
 - ✨ [Tailwind](https://github.com/tailwindlabs/tailwindcss) for styling
-- 🗄 [Airtable](https://github.com/Airtable/airtable.js) for CMS
+- 🗄 [Airtable](https://github.com/airtable/airtable.js) for CMS
+- 🗄 [Planetscale](https://github.com/planetscale/planetscale-node) for DB
 - 💳 [Craftgate](https://github.com/craftgate/craftgate-node-client) for payments
 
 This project uses Craftgate for payment and Airtable for CMS solutions.
@@ -32,6 +33,10 @@ You can visit `.env.example` to see which environment variables you need to set 
 You can deploy your own sticker store by clicking the button below.
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fenesozturk%2Fsticker-store)
+
+### Design
+
+You can find the Figma design file [here](https://www.figma.com/file/ofh41ROvZwVOd3M5lSv2FM/next-ecommerce?node-id=6%3A2).
 
 ## License
 
